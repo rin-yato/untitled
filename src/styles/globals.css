@@ -79,3 +79,13 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@layer components {
+  .clickable {
+    @apply cursor-pointer duration-200 active:scale-95;
+  }
+
+  .clickable-styled {
+    @apply clickable flex items-center gap-2.5 rounded-lg px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-primary;
+  }
+}

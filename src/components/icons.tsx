@@ -1,6 +1,15 @@
 import {
+  Armchair,
+  ArrowRight,
+  Box,
+  Calculator,
+  ClipboardList,
+  DollarSign,
   LucideProps,
+  Menu,
   Moon,
+  PackageOpen,
+  Settings,
   SunMedium,
   Twitter,
   type Icon as LucideIcon,
@@ -9,9 +18,18 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
-  sun: SunMedium,
+  box: Box,
   moon: Moon,
+  menu: Menu,
+  sun: SunMedium,
   twitter: Twitter,
+  armchair: Armchair,
+  settings: Settings,
+  calculator: Calculator,
+  arrowRight: ArrowRight,
+  dollarSign: DollarSign,
+  packageOpen: PackageOpen,
+  clipboardList: ClipboardList,
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path
