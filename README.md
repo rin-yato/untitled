@@ -72,9 +72,9 @@ pnpm dev
 
 ## Todos
 
-- [] Add more features
-- [] Notion API intergration
-- [] Full test coverage for API
-- [] Storybook 
-- [] Home page and Documentation
-- [] Dockerize the project
+ [] Add more features
+ [] Notion API intergration
+ [] Full test coverage for API
+ [] Storybook 
+ [] Home page and Documentation
+ [] Dockerize the project
