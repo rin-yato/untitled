@@ -43,9 +43,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen">
+            <div className="relative flex max-h-screen min-h-screen">
               <Sidebar />
-              <div className="flex-1">{children}</div>
+              <main className="no-scrollbar flex-1 overflow-y-auto">
+                {children}
+              </main>
               <TableOrder />
             </div>
             <TailwindIndicator />
