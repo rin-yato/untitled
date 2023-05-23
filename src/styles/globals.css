@@ -28,6 +28,9 @@
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
+    --complementary: 149 80% 90%;
+    --complementary-foreground: 163 94% 24%;
+
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
@@ -70,6 +73,27 @@
   }
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #bec2c9;
+  border-radius: 99px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: #6b7280;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -87,5 +111,13 @@
 
   .clickable-styled {
     @apply clickable flex items-center gap-2.5 rounded-lg px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-primary;
+  }
+
+  .hover-ring {
+    @apply ring-emerald-500 hover:ring-1;
+  }
+
+  .cliche-card {
+    @apply flex aspect-square w-full select-none flex-col rounded-lg bg-complementary p-5 ring-complementary-foreground hover:ring-1 hover:dark:saturate-200;
   }
 }
