@@ -1,15 +1,14 @@
 "use client"
 
-import { useState } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 
+import useTable from "@/hooks/use-table"
 import Text from "@/components/ui/text"
-import PickMenuDialog from "@/components/dialog/pick-menu-dialog"
 import { PickTableDialog } from "@/components/dialog/pick-table-dialog"
 import TableCard from "@/components/table-card"
 
 export default function IndexPage() {
-  const [tables, setTables] = useState<number[]>([])
+  const { tables, addTable } = useTable()
   const [parent] = useAutoAnimate({
     duration: 250,
     easing: "ease",
@@ -25,11 +24,11 @@ export default function IndexPage() {
       </Text>
       <div ref={parent} className="grid w-full grid-cols-4 gap-5">
         {tables.map((table, index) => (
-          <TableCard key={index} id={table} />
+          <TableCard key={index} id={table.id} />
         ))}
         <PickTableDialog
-          filter={tables}
-          onPickTable={(id) => setTables([...tables, id])}
+          filter={tables.map((table) => table.id)}
+          onPickTable={(id) => addTable(id)}
         />
       </div>
     </section>

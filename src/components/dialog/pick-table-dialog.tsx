@@ -1,11 +1,12 @@
 import { Close } from "@radix-ui/react-dialog"
 
+import { Table } from "@/types/entities/table"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import Text from "@/components/ui/text"
 
 type Props = {
-  onPickTable: (tableId: number) => void
+  onPickTable: (table: Table) => void
   filter?: number[]
 }
 
@@ -26,9 +27,13 @@ export function PickTableDialog({ onPickTable, filter }: Props) {
           {[...Array(18)].map((_, index) => {
             if (filter?.includes(index + 1)) return null
             return (
-              <Close key={index} onClick={() => onPickTable(index + 1)}>
+              <Close
+                key={index}
+                onClick={() =>
+                  onPickTable({ id: index + 1, number: index + 1 })
+                }
+              >
                 <div className="clickable cliche-card justify-between">
-                  <div className="flex gap-3"></div>
                   <span className="flex flex-col items-start">
                     <Text variant="subheading" className="dark:text-secondary">
                       Table {index + 1}
