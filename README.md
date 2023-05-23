@@ -28,7 +28,6 @@ The purpose of this project is to help beginner get a grasp of the basics of web
 - TailwindCSS - CSS Framework
 - Shadcn UI - UI Component
 - Drizzle - ORM
-- Postgres - Database
 - PlanetScale - Database Deployment
 
 ## How to run this project?
