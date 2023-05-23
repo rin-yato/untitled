@@ -1,7 +1,7 @@
 import React from "react"
 
-import SidebarItem from "@/components/sidebar/sidebar-item"
 import { sidebarConfig } from "@/config/sidebar"
+import { SidebarItem } from "@/components/sidebar"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function SidebarList() {

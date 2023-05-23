@@ -14,10 +14,14 @@ import {
 
 export function Toaster() {
   const { toasts } = useToast()
+  const [parent] = useAutoAnimate({
+    duration: 250,
+    easing: "ease",
+  })
 
   return (
     <ToastProvider>
-      <div>
+      <div ref={parent}>
         {toasts.map(function ({ id, title, description, action, ...props }) {
           return (
             <Toast key={id} {...props}>

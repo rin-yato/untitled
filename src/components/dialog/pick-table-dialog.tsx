@@ -1,3 +1,5 @@
+"use client"
+
 import { Close } from "@radix-ui/react-dialog"
 
 import { Table } from "@/types/entities/table"

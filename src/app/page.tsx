@@ -4,8 +4,9 @@ import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 import useTable from "@/hooks/use-table"
 import Text from "@/components/ui/text"
-import { PickTableDialog } from "@/components/dialog/pick-table-dialog"
-import TableCard from "@/components/table-card"
+import { PickTableDialog } from "@/components/dialog"
+import { TableCard } from "@/components/table-card"
+import ToastDemo from "@/components/toast-demo"
 
 export default function IndexPage() {
   const { tables, addTable } = useTable()
@@ -22,6 +23,7 @@ export default function IndexPage() {
       >
         Table
       </Text>
+      <ToastDemo />
       <div ref={parent} className="grid w-full grid-cols-4 gap-5">
         {tables.map((table, index) => (
           <TableCard key={index} id={table.id} />

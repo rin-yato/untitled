@@ -1,9 +1,8 @@
 import React from "react"
 
 import { Button } from "@/components/ui/button"
-import PickMenuDialog from "@/components/dialog/pick-menu-dialog"
-import { Icons } from "@/components/icons"
-import OrderItem from "@/components/table-order/order-item"
+import { PickMenuDialog } from "@/components/dialog"
+import { OrderItem } from "@/components/table-order"
 
 export default function OrderList() {
   return (

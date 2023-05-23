@@ -1,5 +1,4 @@
 import * as React from "react"
-import autoAnimate from "@formkit/auto-animate"
 import * as ToastPrimitives from "@radix-ui/react-toast"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
