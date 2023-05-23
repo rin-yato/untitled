@@ -5,7 +5,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
-import OrderItemConfig from "@/components/table-order/order-item-config"
+import { OrderItemConfig } from "@/components/table-order"
 
 export default function OrderItem() {
   const [open, setOpen] = useState(false)

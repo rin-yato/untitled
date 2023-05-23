@@ -1,6 +1,5 @@
 import React from "react"
 
-import { cn } from "@/lib/utils"
 import Text from "@/components/ui/text"
 import { Icons } from "@/components/icons"
 

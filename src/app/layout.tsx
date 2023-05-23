@@ -5,10 +5,10 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toast/toaster"
-import Sidebar from "@/components/sidebar"
-import TableOrder from "@/components/table-order"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Sidebar } from "@/components/sidebar"
+import { TableOrder } from "@/components/table-order"
 
 export const metadata: Metadata = {
   title: {
