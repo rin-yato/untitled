@@ -41,14 +41,12 @@ export default function MenuTab({ categories }: Props) {
                 <Text variant="smallheading" className="dark:text-secondary">
                   {menu.name}
                 </Text>
-                <Text variant="caption" className="text-muted-foreground">
+                <Text
+                  variant="caption"
+                  className="ml-auto mt-auto text-muted-foreground"
+                >
                   ${menu.price}
                 </Text>
-                <DynamicIcon
-                  name={category.icon}
-                  className="ml-auto mt-auto text-complementary-foreground"
-                  size="36"
-                />
               </div>
             ))}
           </div>
