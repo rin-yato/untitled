@@ -6,7 +6,6 @@ import { Close } from "@radix-ui/react-dialog"
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import Text from "@/components/ui/text"
 import { Icons } from "@/components/icons"
 import MenuTab from "@/components/menu-tab"
 
