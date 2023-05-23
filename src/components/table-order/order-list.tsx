@@ -4,12 +4,16 @@ import { Button } from "@/components/ui/button"
 import { PickMenuDialog } from "@/components/dialog"
 import { OrderItem } from "@/components/table-order"
 
-export default function OrderList() {
+type Props = {
+  items: Array<{ itemId: number; quantity: number }>
+}
+
+export default function OrderList({ items }: Props) {
   return (
     <div className="flex h-full flex-col justify-between">
       <ul className="flex flex-col gap-2">
-        {[...Array(7)].map((_, i) => (
-          <OrderItem key={i} />
+        {items.map((item, i) => (
+          <OrderItem key={i} item={item} />
         ))}
         <PickMenuDialog />
       </ul>
