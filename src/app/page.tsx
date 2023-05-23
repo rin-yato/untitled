@@ -2,14 +2,13 @@
 
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 
-import useTable from "@/hooks/use-table"
+import useReceipt from "@/hooks/use-receipt"
 import Text from "@/components/ui/text"
 import { PickTableDialog } from "@/components/dialog"
 import { TableCard } from "@/components/table-card"
-import ToastDemo from "@/components/toast-demo"
 
 export default function IndexPage() {
-  const { tables, addTable } = useTable()
+  const { receipts, addReceipt } = useReceipt()
   const [parent] = useAutoAnimate({
     duration: 250,
     easing: "ease",
@@ -23,14 +22,14 @@ export default function IndexPage() {
       >
         Table
       </Text>
-      <ToastDemo />
+
       <div ref={parent} className="grid w-full grid-cols-4 gap-5">
-        {tables.map((table, index) => (
-          <TableCard key={index} id={table.id} />
+        {receipts.map((receipt, index) => (
+          <TableCard key={index} id={receipt.tableId} />
         ))}
         <PickTableDialog
-          filter={tables.map((table) => table.id)}
-          onPickTable={(id) => addTable(id)}
+          filter={receipts.map((receipt) => receipt.tableId)}
+          onPickTable={(id) => addReceipt(id)}
         />
       </div>
     </section>

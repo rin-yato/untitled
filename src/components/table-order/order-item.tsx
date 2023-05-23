@@ -3,11 +3,19 @@
 import React, { MouseEvent, useState } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 
+import { Item } from "@/types/entities/item"
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
 import { OrderItemConfig } from "@/components/table-order"
 
-export default function OrderItem() {
+type Props = {
+  item: {
+    itemId: number
+    quantity: number
+  }
+}
+
+export default function OrderItem({ item: { itemId, quantity } }: Props) {
   const [open, setOpen] = useState(false)
   const [autoAnimateParent] = useAutoAnimate({
     duration: 200,
@@ -30,11 +38,8 @@ export default function OrderItem() {
     >
       <div className="flex justify-between">
         <span className="flex w-fit items-center gap-2">
-          {/* <span className="grid h-6 w-6 place-content-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-            1
-          </span> */}
           <Text variant="caption" className="w-fit">
-            Mi hil
+            Item #{itemId}
           </Text>
         </span>
         <div className="flex gap-2">
@@ -50,7 +55,7 @@ export default function OrderItem() {
             className="text-emerald-500"
             onClick={handleAdd}
           >
-            3
+            {quantity}
           </Button>
           <Button
             variant="secondary"
