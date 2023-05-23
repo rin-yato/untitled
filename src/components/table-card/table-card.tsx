@@ -1,4 +1,6 @@
 import React from "react"
+import { selectedTableAtom } from "@/store/table"
+import { useAtom } from "jotai"
 
 import Text from "@/components/ui/text"
 import { DynamicIcon, Icon } from "@/components/icons"
@@ -10,8 +12,15 @@ type Props = {
 }
 
 export default function TableCard({ id }: Props) {
+  const [, setSelectedTable] = useAtom(selectedTableAtom)
+  const handleTableClick = () => {
+    setSelectedTable({ id, number: id })
+  }
   return (
-    <div className="clickable cliche-card justify-between">
+    <button
+      onClick={handleTableClick}
+      className="clickable cliche-card justify-between"
+    >
       <div className="flex gap-3">
         {foodIcons.map((icon) => (
           <DynamicIcon name={icon} className="text-complementary-foreground" />
@@ -25,6 +34,6 @@ export default function TableCard({ id }: Props) {
           6 items
         </Text>
       </span>
-    </div>
+    </button>
   )
 }
