@@ -2,7 +2,13 @@ import React from "react"
 
 import { cn } from "@/lib/utils"
 
-type TextVariant = "heading" | "subheading" | "title" | "caption" | "body"
+type TextVariant =
+  | "heading"
+  | "subheading"
+  | "smallheading"
+  | "title"
+  | "caption"
+  | "body"
 
 type Props = {
   variant: TextVariant
@@ -17,6 +23,10 @@ const CONFIG = {
   subheading: {
     tag: "h2",
     tw: "scroll-m-20 text-3xl font-semibold tracking-tight",
+  },
+  smallheading: {
+    tag: "h2",
+    tw: "scroll-m-20 text-2xl font-semibold tracking-tight",
   },
   title: {
     tag: "h3",

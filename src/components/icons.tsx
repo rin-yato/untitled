@@ -1,32 +1,54 @@
 import {
+  Apple,
   Armchair,
   ArrowRight,
+  Beef,
+  Beer,
   Box,
   Calculator,
   ClipboardList,
   DollarSign,
+  GlassWater,
   LucideProps,
   Menu,
   Moon,
   PackageOpen,
+  Pizza,
+  Plus,
+  PlusCircle,
   Settings,
+  Soup,
   SunMedium,
+  Trash2,
   Twitter,
+  Users2,
   type Icon as LucideIcon,
 } from "lucide-react"
 
-export type Icon = LucideIcon
+// export type Icon = LucideIcon
+
+export type Icon = keyof typeof Icons
 
 export const Icons = {
   box: Box,
+  beef: Beef,
+  beer: Beer,
+  soup: Soup,
   moon: Moon,
+  plus: Plus,
   menu: Menu,
+  pizza: Pizza,
+  apple: Apple,
+  users: Users2,
+  trash: Trash2,
   sun: SunMedium,
   twitter: Twitter,
   armchair: Armchair,
   settings: Settings,
+  glassWater: GlassWater,
   calculator: Calculator,
   arrowRight: ArrowRight,
+  plusCircle: PlusCircle,
   dollarSign: DollarSign,
   packageOpen: PackageOpen,
   clipboardList: ClipboardList,
@@ -46,4 +68,13 @@ export const Icons = {
       ></path>
     </svg>
   ),
+}
+
+export type DynamicIconProps = {
+  name: Icon
+} & LucideProps
+
+export const DynamicIcon = ({ name, ...props }: DynamicIconProps) => {
+  const Icon = Icons[name]
+  return <Icon {...props} />
 }
