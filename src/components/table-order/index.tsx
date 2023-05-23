@@ -7,7 +7,7 @@ import OrderList from "@/components/table-order/order-list"
 
 export default function TableOrder() {
   return (
-    <div className="flex min-w-[30vw] flex-col border-l-2 px-5 py-9">
+    <div className="flex min-w-[25vw] max-w-[25vw] flex-col border-l-2 px-5 py-9">
       <span className="mb-6 flex items-center justify-between">
         <span className="flex flex-col">
           <Text variant="subheading">Table 6</Text>
@@ -16,10 +16,10 @@ export default function TableOrder() {
           </Text>
         </span>
         <Button variant="outline" className="h-fit rounded-full p-2">
-          <Icons.arrowRight size="32" />
+          <Icons.plus size="32" />
         </Button>
       </span>
-      <section>
+      <section className="h-full">
         <OrderList />
       </section>
     </div>
