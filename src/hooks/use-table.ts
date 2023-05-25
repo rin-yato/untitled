@@ -1,4 +1,4 @@
-import tablesAtom from "@/store/table/tables-atom"
+import tablesAtom from "@/jotai/table/tables-atom"
 import { useAtom } from "jotai"
 
 import { Table } from "@/types/entities/table"
