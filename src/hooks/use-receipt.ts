@@ -1,4 +1,4 @@
-import receiptsAtom from "@/store/receipt-atom"
+import receiptsAtom from "@/jotai/receipt-atom"
 import { useAtom } from "jotai"
 
 import { Receipt } from "@/types/entities/receipt"
