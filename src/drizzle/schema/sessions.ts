@@ -6,6 +6,6 @@ export const sessions = pgTable("sessions", {
   tableId: uuid("table_id")
     .notNull()
     .references(() => tables.id),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 })

@@ -9,8 +9,8 @@ export const orders = pgTable("orders", {
     .notNull()
     .references(() => items.id),
   quantity: integer("quantity").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 })
 
 export const insertOrderSchema = createInsertSchema(orders)
