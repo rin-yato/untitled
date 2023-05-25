@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { selectedTableAtom } from "@/store/table"
+import { selectedTableAtom } from "@/jotai/table"
 import { useAtom } from "jotai"
 
 import useReceipt from "@/hooks/use-receipt"

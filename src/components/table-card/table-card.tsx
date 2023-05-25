@@ -1,5 +1,5 @@
 import React from "react"
-import { selectedTableAtom } from "@/store/table"
+import { selectedTableAtom } from "@/jotai/table"
 import { useAtom } from "jotai"
 
 import Text from "@/components/ui/text"
