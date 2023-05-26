@@ -3,10 +3,9 @@ import { db } from "@/drizzle/db"
 import { insertTableSchema, tables } from "@/drizzle/schema/tables"
 import { eq } from "drizzle-orm"
 
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+import { ApiParams } from "@/types/utils"
+
+export async function PUT(request: Request, { params }: ApiParams<"id">) {
   const body = await request.json()
   const updateTableData = insertTableSchema.partial().parse(body)
   const [updatedTable] = await db
@@ -18,7 +17,7 @@ export async function PUT(
   return NextResponse.json(updatedTable)
 }
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE({ params }: ApiParams<"id">) {
   const deletedTable = await db
     .delete(tables)
     .where(eq(tables.id, params.id))
