@@ -1,27 +1,28 @@
-import tablesAtom from "@/jotai/table/tables-atom"
+"use client"
+
+import { useEffect } from "react"
+import tablesAtom from "@/jotai/tables-atom"
 import { useAtom } from "jotai"
 
-import { Table } from "@/types/entities/table"
-
 export default function useTable() {
-  const [tables, setTables] = useAtom(tablesAtom)
+  const [tables, setTable] = useAtom(tablesAtom)
 
-  const addTable = (table: Table) => {
-    setTables([...tables, table])
+  function fetchTables() {
+    fetch("/api/table").then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          setTable(data)
+        })
+      }
+    })
   }
 
-  const removeTable = (table: Table) => {
-    setTables(tables.filter((t) => t.id !== table.id))
-  }
-
-  const updateTable = (table: Table) => {
-    setTables(tables.map((t) => (t.id === table.id ? table : t)))
-  }
+  useEffect(() => {
+    fetchTables()
+  }, [])
 
   return {
     tables,
-    addTable,
-    removeTable,
-    updateTable,
+    fetchTables,
   }
 }

@@ -1,19 +1,20 @@
 import React from "react"
 
+import { OrderWithItem } from "@/lib/types/api/sessions"
 import { Button } from "@/components/ui/button"
 import { PickMenuDialog } from "@/components/dialog"
 import { OrderItem } from "@/components/table-order"
 
 type Props = {
-  items: Array<{ itemId: number; quantity: number }>
+  orders: Array<OrderWithItem>
 }
 
-export default function OrderList({ items }: Props) {
+export default function OrderList({ orders }: Props) {
   return (
     <div className="flex h-full flex-col justify-between">
       <ul className="flex flex-col gap-2">
-        {items.map((item, i) => (
-          <OrderItem key={i} item={item} />
+        {orders.map((order) => (
+          <OrderItem key={order.id} order={order} />
         ))}
         <PickMenuDialog />
       </ul>

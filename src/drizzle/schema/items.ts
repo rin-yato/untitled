@@ -1,4 +1,6 @@
 import { categories } from "@/drizzle/schema/categories"
+import { orders } from "@/drizzle/schema/orders"
+import { InferModel, relations } from "drizzle-orm"
 import { pgTable, real, text, timestamp, uuid } from "drizzle-orm/pg-core"
 import { createInsertSchema } from "drizzle-zod"
 
@@ -14,3 +16,13 @@ export const items = pgTable("items", {
 })
 
 export const insertItemSchema = createInsertSchema(items)
+
+export const itemsRelations = relations(items, ({ one, many }) => ({
+  category: one(categories, {
+    fields: [items.cateoryId],
+    references: [categories.id],
+  }),
+  orders: many(orders)
+}))
+
+export type Item = InferModel<typeof items>

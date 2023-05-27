@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "ad519ae0-7dc1-4c8c-9e5d-88f89992cbaf",
-  "prevId": "129bf525-6fa2-4139-aba7-403b32217a5b",
+  "id": "0698f263-1d9a-45cb-a412-225fbbb619c6",
+  "prevId": "9ebfc09b-dc8a-4f4b-8111-6321b964de41",
   "tables": {
     "categories": {
       "name": "categories",
@@ -115,7 +115,7 @@
         },
         "session_id": {
           "name": "session_id",
-          "type": "integer",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
@@ -148,6 +148,19 @@
       },
       "indexes": {},
       "foreignKeys": {
+        "orders_session_id_sessions_id_fk": {
+          "name": "orders_session_id_sessions_id_fk",
+          "tableFrom": "orders",
+          "tableTo": "sessions",
+          "columnsFrom": [
+            "session_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
         "orders_item_id_items_id_fk": {
           "name": "orders_item_id_items_id_fk",
           "tableFrom": "orders",
@@ -180,6 +193,13 @@
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
         },
         "created_at": {
           "name": "created_at",

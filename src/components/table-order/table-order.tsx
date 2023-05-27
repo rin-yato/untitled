@@ -1,28 +1,24 @@
 "use client"
 
 import React from "react"
-import { selectedTableAtom } from "@/jotai/table"
+import selectedSessionAtom from "@/jotai/selected-session-atom"
 import { useAtom } from "jotai"
 
-import useReceipt from "@/hooks/use-receipt"
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
 import { Icons } from "@/components/icons"
 import { OrderList } from "@/components/table-order"
 
 export default function TableOrder() {
-  const [selectedTable] = useAtom(selectedTableAtom)
-  const { receipts } = useReceipt()
+  const [session] = useAtom(selectedSessionAtom)
 
-  if (!selectedTable) return <Text variant="heading">Lmao</Text>
-
-  const receipt = receipts.find((r) => r.tableId === selectedTable.id)
+  if (!session) return <Text variant="heading">Lmao</Text>
 
   return (
     <div className="flex min-w-[25vw] max-w-[25vw] flex-col border-l-2 px-5 py-9">
       <span className="mb-6 flex items-center justify-between">
         <span className="flex flex-col">
-          <Text variant="subheading">Table {selectedTable.id}</Text>
+          <Text variant="subheading">Table {session.table.number}</Text>
           <Text variant="caption" className="pl-1 text-muted-foreground">
             started 7m ago
           </Text>
@@ -32,7 +28,7 @@ export default function TableOrder() {
         </Button>
       </span>
       <section className="h-full">
-        <OrderList items={receipt?.orderedItems || []} />
+        <OrderList orders={session.orders || []} />
       </section>
     </div>
   )
