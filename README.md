@@ -29,7 +29,7 @@ The purpose of this project is to help beginner get a grasp of the basics of web
 - Shadcn UI - UI Component
 - Drizzle - ORM
 - Postgres - Database
-- PlanetScale - Database Deployment
+- Neon Postgres - Database Deployment
 
 ## How to run this project?
 

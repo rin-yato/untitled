@@ -3,7 +3,7 @@ import { db } from "@/drizzle/db"
 import { insertItemSchema, items } from "@/drizzle/schema/items"
 import { eq } from "drizzle-orm"
 
-import { ApiParams } from "@/types/utils"
+import { ApiParams } from "@/lib/types/utils"
 
 export async function PUT(request: Request, { params }: ApiParams<"id">) {
   const body = await request.json()

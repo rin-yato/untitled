@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@formkit/auto-animate': 1.0.0-beta.6
   '@ianvs/prettier-plugin-sort-imports': ^3.7.1
-  '@neondatabase/serverless': ^0.4.5
   '@planetscale/database': ^1.7.0
   '@radix-ui/react-dialog': ^1.0.3
   '@radix-ui/react-tabs': ^1.0.3
@@ -19,8 +18,8 @@ specifiers:
   clsx: ^1.2.1
   cmdk: ^0.2.0
   dotenv: ^16.0.3
-  drizzle-kit: ^0.18.0
-  drizzle-orm: ^0.26.0
+  drizzle-kit: latest
+  drizzle-orm: latest
   drizzle-zod: ^0.4.1
   eslint: ^8.31.0
   eslint-config-next: 13.0.0
@@ -49,7 +48,6 @@ specifiers:
 
 dependencies:
   '@formkit/auto-animate': 1.0.0-beta.6
-  '@neondatabase/serverless': 0.4.5
   '@planetscale/database': 1.7.0
   '@radix-ui/react-dialog': 1.0.3_tqcjxml4rosq5qpg5cznikfcd4
   '@radix-ui/react-tabs': 1.0.3_biqbaboplfbrettd7655fr4n2y
@@ -58,8 +56,8 @@ dependencies:
   class-variance-authority: 0.4.0_typescript@4.9.5
   clsx: 1.2.1
   cmdk: 0.2.0_tqcjxml4rosq5qpg5cznikfcd4
-  drizzle-orm: 0.26.0_6pdvsdn6hkaqt2cgetarn4ywye
-  drizzle-zod: 0.4.1_3wgz7w5ki5ufrccy2v3tfa2lje
+  drizzle-orm: 0.26.1_fvkylez5kqsj7ipxlwjekna2li
+  drizzle-zod: 0.4.1_f4da4kadnzstfd62kopsmz6b5e
   jotai: 2.1.0_react@18.2.0
   lucide-react: 0.220.0_react@18.2.0
   mysql2: 3.3.2
@@ -83,7 +81,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.59.6_jgkqkwom7vrxl4kyi454n2sy2i
   autoprefixer: 10.4.14_postcss@8.4.23
   dotenv: 16.0.3
-  drizzle-kit: 0.18.0
+  drizzle-kit: 0.18.1
   eslint: 8.40.0
   eslint-config-next: 13.0.0_jgkqkwom7vrxl4kyi454n2sy2i
   eslint-config-prettier: 8.8.0_eslint@8.40.0
@@ -439,12 +437,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
-
-  /@neondatabase/serverless/0.4.5:
-    resolution: {integrity: sha512-+wYPtiqrIimONiOvHczfEdstxNUSWZ0dY+MD9vFwHBdr4Vx1adRKIKWQivG1MJ7uRpWsZZwEFQ7qhDJrgnidqw==}
-    dependencies:
-      '@types/pg': 8.10.1
-    dev: false
 
   /@next/env/13.4.2:
     resolution: {integrity: sha512-Wqvo7lDeS0KGwtwg9TT9wKQ8raelmUxt+TQKWvG/xKfcmDXNOtCuaszcfCF8JzlBG1q0VhpI6CKaRMbVPMDWgw==}
@@ -1670,8 +1662,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit/0.18.0:
-    resolution: {integrity: sha512-43oH0XNWJDfMmVtDVnW8OV+tIs3xXDb1MjdsDiv0a7unQAylr0hpGG0HD5uEPWSbt7oxBots+hnYWxo98D0KAg==}
+  /drizzle-kit/0.18.1:
+    resolution: {integrity: sha512-Oqie227W2Dd7FuqX4pvQWeClSvnoPCIn2cO9JueeLWZqj3tpdBhnbgt4nLHhBbOdWRlTLYwXnkTDW3hYym/gGQ==}
     hasBin: true
     dependencies:
       camelcase: 7.0.1
@@ -1688,8 +1680,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm/0.26.0_6pdvsdn6hkaqt2cgetarn4ywye:
-    resolution: {integrity: sha512-ztjhHehcuG5+lpGYxfT/L5I+yd/Z0dOf0fV3cS2ywBU01wkpxjwl4EJZVT7kVzjYfM8kwMGDghAPRPBCK0vULA==}
+  /drizzle-orm/0.26.1_fvkylez5kqsj7ipxlwjekna2li:
+    resolution: {integrity: sha512-PgHPBJ4BUi/xWEjBbaYo4eiVC7hIwPtSEAVO3QuGMzLV+YwD2jPyV2Y7nvP1jHZlA4IV9wLmkcpicBO/255XFg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -1747,20 +1739,19 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      '@neondatabase/serverless': 0.4.5
       '@planetscale/database': 1.7.0
       '@types/pg': 8.10.1
       mysql2: 3.3.2
       pg: 8.11.0
     dev: false
 
-  /drizzle-zod/0.4.1_3wgz7w5ki5ufrccy2v3tfa2lje:
+  /drizzle-zod/0.4.1_f4da4kadnzstfd62kopsmz6b5e:
     resolution: {integrity: sha512-0SoW2YwQwh+9QUNezzPAg179qO6OinbmLJFLjCjxfBpNDD39YH2hlSRK/rrkzskyBSORKraSrim/abynQ4k79w==}
     peerDependencies:
       drizzle-orm: '>=0.23.13'
       zod: '*'
     dependencies:
-      drizzle-orm: 0.26.0_6pdvsdn6hkaqt2cgetarn4ywye
+      drizzle-orm: 0.26.1_fvkylez5kqsj7ipxlwjekna2li
       zod: 3.21.4
     dev: false
 
