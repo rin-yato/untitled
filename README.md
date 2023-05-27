@@ -28,8 +28,8 @@ The purpose of this project is to help beginner get a grasp of the basics of web
 - TailwindCSS - CSS Framework
 - Shadcn UI - UI Component
 - Drizzle - ORM
-- Postgres - Database
 - Neon Postgres - Database Deployment
+
 
 ## How to run this project?
 
@@ -72,9 +72,9 @@ pnpm dev
 
 ## Todos
 
-- [] Add more features
-- [] Notion API intergration
-- [] Full test coverage for API
-- [] Storybook 
-- [] Home page and Documentation
-- [] Dockerize the project
+- [ ] Add more features
+- [ ] Notion API intergration
+- [ ] Full test coverage for API
+- [ ] Storybook 
+- [ ] Home page and Documentation
+- [ ] Dockerize the project
