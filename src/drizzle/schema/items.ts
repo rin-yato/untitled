@@ -22,7 +22,7 @@ export const itemsRelations = relations(items, ({ one, many }) => ({
     fields: [items.cateoryId],
     references: [categories.id],
   }),
-  orders: many(orders)
+  orders: many(orders),
 }))
 
 export type Item = InferModel<typeof items>
