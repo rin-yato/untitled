@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import Text from "@/components/ui/text"
 
 type Props = {
-  onPickTable: (tableId: number) => void
+  onPickTable: (tableId: string) => void
   filter?: string[]
 }
 

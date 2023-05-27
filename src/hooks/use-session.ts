@@ -8,7 +8,7 @@ import { useAtom } from "jotai"
 export default function useSession() {
   const [sessions, setSessions] = useAtom(sessionsAtom)
 
-  const addSession = (tableId: number) => {
+  const addSession = (tableId: string) => {
     const createSessionData = insertSessionSchema.parse({ tableId })
     fetch("/api/session", {
       method: "POST",
