@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm"
 
 import { ApiParams } from "@/lib/types/utils"
 
-export async function GET({ params }: ApiParams<"id">) {
+export async function GET(request: Request, { params }: ApiParams<"id">) {
   const [session] = await db
     .select()
     .from(sessions)
@@ -29,7 +29,7 @@ export async function PUT(request: Request, { params }: ApiParams<"id">) {
   return NextResponse.json(updatedSession)
 }
 
-export async function DELETE({ params }: ApiParams<"id">) {
+export async function DELETE(request: Request, { params }: ApiParams<"id">) {
   const [deletedSession] = await db
     .delete(sessions)
     .where(eq(sessions.id, params.id))

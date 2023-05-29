@@ -4,10 +4,9 @@ import React from "react"
 import selectedSessionAtom from "@/jotai/selected-session-atom"
 import { useAtom } from "jotai"
 
-import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
-import { Icons } from "@/components/icons"
 import { OrderList } from "@/components/table-order"
+import TableOrderMenu from "@/components/table-order/dropdown-menu"
 
 export default function TableOrder() {
   const [session] = useAtom(selectedSessionAtom)
@@ -23,9 +22,7 @@ export default function TableOrder() {
             started 7m ago
           </Text>
         </span>
-        <Button variant="outline" className="h-fit rounded-full p-2">
-          <Icons.plus size="32" />
-        </Button>
+        <TableOrderMenu />
       </span>
       <section className="h-full">
         <OrderList orders={session.orders || []} />

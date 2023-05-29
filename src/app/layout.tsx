@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/sidebar"
 import { TableOrder } from "@/components/table-order"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AlertDialog } from "@/components/dialog"
 
 export const metadata: Metadata = {
   title: {
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div>
             <TailwindIndicator />
             <Toaster />
+            <AlertDialog />
           </ThemeProvider>
         </body>
       </html>
