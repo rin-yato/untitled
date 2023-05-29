@@ -2,11 +2,16 @@
 
 import { useEffect } from "react"
 import { insertSessionSchema } from "@/drizzle/schema/sessions"
+import selectedSessionAtom from "@/jotai/selected-session-atom"
 import { sessionsAtom } from "@/jotai/sessions-atom"
 import { useAtom } from "jotai"
 
+import useAlert from "@/hooks/use-alert"
+
 export default function useSession() {
+  const { createAlert } = useAlert()
   const [sessions, setSessions] = useAtom(sessionsAtom)
+  const [selectedSession, setSelectedSession] = useAtom(selectedSessionAtom)
 
   const addSession = (tableId: string) => {
     const createSessionData = insertSessionSchema.parse({ tableId })
@@ -32,6 +37,25 @@ export default function useSession() {
     })
   }
 
+  const deleteSession = () => {
+    if (!selectedSession) return
+    createAlert({
+      title: "Delete Table",
+      description: "Are you sure you want to delete this table?",
+      confirmText: "Delete",
+      type: "destructive",
+      onConfirm: () => {
+        fetch(`/api/session/${selectedSession.id}`, {
+          method: "DELETE",
+        }).then((res) => {
+          if (res.ok) {
+            fetchSessions()
+          }
+        })
+      },
+    })
+  }
+
   const fetchSessions = () => {
     fetch("/api/session").then((res) => {
       if (res.ok) {
@@ -50,5 +74,7 @@ export default function useSession() {
     sessions,
     addSession,
     updateSession,
+    deleteSession,
+    selectedSession,
   }
 }
