@@ -21,7 +21,7 @@ export default function TableOrderMenu() {
           size="xl"
           className="aspect-square rounded-full p-3"
         >
-          <Icons.edit />
+          <Icons.moreHorizontal />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-5 w-40">

@@ -1,6 +1,6 @@
 import { atom } from "jotai"
 
-import { SessionsResponse } from "@/lib/types/api/sessions"
+import { SessionsResponse } from "@/types/api/sessions"
 
 const selectedSessionAtom = atom<SessionsResponse | null>(null)
 

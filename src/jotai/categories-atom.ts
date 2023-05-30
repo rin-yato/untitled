@@ -1,6 +1,7 @@
-import { Category } from "@/drizzle/schema/categories"
 import { atom } from "jotai"
 
-const categoriesAtom = atom<Array<Category>>([])
+import { CategoriesResponse } from "@/types/api/categories"
+
+const categoriesAtom = atom<Array<CategoriesResponse>>([])
 
 export default categoriesAtom

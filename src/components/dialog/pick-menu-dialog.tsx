@@ -1,15 +1,15 @@
 "use client"
 
 import React from "react"
-import { categories } from "@/db"
-import { Close } from "@radix-ui/react-dialog"
 
+import useCategory from "@/hooks/use-category"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Icons } from "@/components/icons"
 import MenuTab from "@/components/menu-tab"
 
 export default function PickMenuDialog() {
+  const { categories } = useCategory()
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { OrderWithItem } from "@/lib/types/api/sessions"
+import { OrderWithItem } from "@/types/api/sessions"
 import { Button } from "@/components/ui/button"
 import { PickMenuDialog } from "@/components/dialog"
 import { OrderItem } from "@/components/table-order"
