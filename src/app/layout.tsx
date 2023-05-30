@@ -5,11 +5,11 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toast/toaster"
+import { AlertDialog } from "@/components/dialog"
 import { Sidebar } from "@/components/sidebar"
 import { TableOrder } from "@/components/table-order"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { AlertDialog } from "@/components/dialog"
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex max-h-screen min-h-screen">
               <Sidebar />
-              <main className="no-scrollbar flex-1 overflow-y-auto">
+              <main className="no-scrollbar min-h-full flex-1 overflow-y-auto">
                 {children}
               </main>
               <TableOrder />

@@ -20,7 +20,7 @@ export function PickTableDialog({ onPickTable, filter }: Props) {
         <Button
           size="xl"
           variant="accent"
-          className="aspect-square h-full w-full ring-emerald-500 hover:ring-1 dark:ring-emerald-100"
+          className="aspect-square h-fit w-full ring-emerald-500 hover:ring-1 dark:ring-emerald-100"
         >
           Pick a Table
         </Button>
