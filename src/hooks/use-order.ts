@@ -1,4 +1,4 @@
-"use client"
+
 
 import { insertOrderSchema } from "@/drizzle/schema/orders"
 import selectedSessionAtom from "@/jotai/selected-session-atom"
