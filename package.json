@@ -28,7 +28,7 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
-    "drizzle-orm": "latest",
+    "drizzle-orm": "0.26.1",
     "drizzle-zod": "^0.4.1",
     "jotai": "^2.1.0",
     "lucide-react": "^0.220.0",
