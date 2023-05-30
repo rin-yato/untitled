@@ -8,10 +8,10 @@ export const orders = pgTable("orders", {
   id: uuid("id").primaryKey().defaultRandom(),
   sessionId: uuid("session_id")
     .notNull()
-    .references(() => sessions.id),
+    .references(() => sessions.id, { onDelete: "cascade" }),
   itemId: uuid("item_id")
     .notNull()
-    .references(() => items.id),
+    .references(() => items.id, { onDelete: "cascade" }),
   quantity: integer("quantity").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),

@@ -3,7 +3,7 @@
 import React, { MouseEvent, useState } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 
-import { OrderWithItem } from "@/lib/types/api/sessions"
+import { OrderWithItem } from "@/types/api/sessions"
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
 import { OrderItemConfig } from "@/components/table-order"

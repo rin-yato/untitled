@@ -8,7 +8,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "NodeNext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -27,6 +27,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "**/*.d.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.mjs"

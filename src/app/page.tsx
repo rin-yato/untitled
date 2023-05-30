@@ -4,7 +4,7 @@ import selectedSessionAtom from "@/jotai/selected-session-atom"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useAtom } from "jotai"
 
-import { SessionsResponse } from "@/lib/types/api/sessions"
+import { SessionsResponse } from "@/types/api/sessions"
 import useSession from "@/hooks/use-session"
 import Text from "@/components/ui/text"
 import { PickTableDialog } from "@/components/dialog"

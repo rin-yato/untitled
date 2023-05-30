@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server"
 import { db } from "@/drizzle/db"
-import { orders, tables } from "@/drizzle/schema"
 import { sessions } from "@/drizzle/schema/sessions"
 import { eq } from "drizzle-orm"
 
-import { ApiParams } from "@/lib/types/utils"
+import { ApiParams } from "@/types/utils"
+import { tables } from "@/drizzle/schema/tables"
+import { orders } from "@/drizzle/schema/orders"
 
 export async function GET(request: Request, { params }: ApiParams<"id">) {
   const [session] = await db

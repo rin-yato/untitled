@@ -2,10 +2,16 @@ import { NextResponse } from "next/server"
 import { db } from "@/drizzle/db"
 import { categories, insertCategorySchema } from "@/drizzle/schema/categories"
 
-export async function GET() {
-  const data = await db.select().from(categories)
+import { CategoriesResponse } from "@/types/api/categories"
 
-  return NextResponse.json(data)
+export async function GET() {
+  const data = await db.query.categories.findMany({
+    with: {
+      items: true,
+    },
+  })
+
+  return NextResponse.json(data as Array<CategoriesResponse>)
 }
 
 export async function POST(request: Request) {

@@ -1,8 +1,10 @@
-import { categories } from "@/drizzle/schema/categories"
-import { items } from "@/drizzle/schema/items"
-import { sessions } from "@/drizzle/schema/sessions"
-import { tables } from "@/drizzle/schema/tables"
+import * as items from "@/drizzle/schema/items"
+import * as orders from "@/drizzle/schema/orders"
+import * as sessions from "@/drizzle/schema/sessions"
+import * as tables from "@/drizzle/schema/tables"
 
-import { orders } from "./orders"
+import * as categories from "./categories"
 
-export { tables, categories, items, sessions, orders }
+const schema = { ...tables, ...categories, ...items, ...sessions, ...orders }
+
+export default schema
