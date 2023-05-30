@@ -1,17 +1,15 @@
 "use client"
 
 import React from "react"
-import Image from "next/image"
-import selectedSessionAtom from "@/jotai/selected-session-atom"
-import { useAtom } from "jotai"
 
+import useSession from "@/hooks/use-session"
 import Text from "@/components/ui/text"
 import { Icons } from "@/components/icons"
 import { OrderList } from "@/components/table-order"
 import TableOrderMenu from "@/components/table-order/dropdown-menu"
 
 export default function TableOrder() {
-  const [session] = useAtom(selectedSessionAtom)
+  const { selectedSession: session } = useSession()
 
   if (!session)
     return (

@@ -1,15 +1,12 @@
-"use client"
-
-// import { useEffect } from "react"
-import { Session, insertSessionSchema } from "@/drizzle/schema/sessions"
+import { use, useEffect, useMemo } from "react"
+import { insertSessionSchema } from "@/drizzle/schema/sessions"
 import selectedSessionAtom from "@/jotai/selected-session-atom"
 import axios from "axios"
-// import { sessionsAtom } from "@/jotai/sessions-atom"
 import { useAtom } from "jotai"
 import useSwr from "swr"
 
 import { SessionsResponse } from "@/types/api/sessions"
-import { fetcher, mockOptimisticData } from "@/lib/utils"
+import { fetcher } from "@/lib/utils"
 import useAlert from "@/hooks/use-alert"
 
 export default function useSession() {
@@ -20,32 +17,28 @@ export default function useSession() {
     useAtom(selectedSessionAtom)
 
   // sessions containing orders and items
-  const { data, mutate } = useSwr<Array<SessionsResponse>>(
-    "/api/session",
-    fetcher
-  )
+  const { data, mutate, isValidating, isLoading } = useSwr<
+    Array<SessionsResponse>
+  >("/api/session", fetcher)
 
   // find the selected session from the data
-  const selectedSession = data?.find(
-    (session) => session.id === selectedSessionReference?.id
-  )
+  const selectedSession = useMemo(() => {
+    if (!selectedSessionReference) return undefined
+    return data?.find((session) => session.id === selectedSessionReference.id)
+  }, [selectedSessionReference, data])
 
   const addSession = async (tableId: string) => {
-    // const createSessionData = insertSessionSchema.parse({ tableId })
-    // const optimisticData = mockOptimisticData(createSessionData, data || [])
-    // await mutate(() => axios.get("/api/session"), { optimisticData })
+    const createSessionData = insertSessionSchema.parse({ tableId })
+    await axios.post("/api/session", createSessionData)
+    mutate()
   }
 
-  const updateSession = (id: number, tableId: number) => {
+  const updateSession = async (id: number, tableId: number) => {
     const updateSessionData = insertSessionSchema.partial().parse({ tableId })
-    fetch(`/api/session/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(updateSessionData),
-    }).then((res) => {
-      if (res.ok) {
-        mutate()
-      }
-    })
+
+    await axios.put(`/api/session/${id}`, updateSessionData)
+
+    mutate()
   }
 
   const deleteSession = () => {
@@ -56,13 +49,9 @@ export default function useSession() {
       confirmText: "Delete",
       type: "destructive",
       onConfirm: () => {
-        fetch(`/api/session/${selectedSessionReference.id}`, {
-          method: "DELETE",
-        }).then((res) => {
-          if (res.ok) {
-            mutate()
-            setSelectedSession(null)
-          }
+        axios.delete(`/api/session/${selectedSessionReference.id}`).then(() => {
+          mutate()
+          setSelectedSession(null)
         })
       },
     })

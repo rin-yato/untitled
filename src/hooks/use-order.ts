@@ -1,5 +1,3 @@
-"use client"
-
 import { insertOrderSchema } from "@/drizzle/schema/orders"
 import selectedSessionAtom from "@/jotai/selected-session-atom"
 import axios from "axios"
@@ -9,6 +7,7 @@ import useSession from "@/hooks/use-session"
 
 export default function useOrder() {
   const [selectedSession, setSelectedSession] = useAtom(selectedSessionAtom)
+
   const { mutate: mutateSession } = useSession()
 
   const calculateNewOrder = (orderId: string, quantity: number) => {

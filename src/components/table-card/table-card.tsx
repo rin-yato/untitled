@@ -11,7 +11,7 @@ type Props = {
 
 export default function TableCard({ number }: Props) {
   return (
-    <div className="clickable cliche-card justify-between">
+    <div className="clickable cliche-card justify-between hover:ring-4">
       <div className="flex gap-3">
         {foodIcons.map((icon) => (
           <DynamicIcon name={icon} className="text-complementary-foreground" />
