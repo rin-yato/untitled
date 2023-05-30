@@ -23,7 +23,7 @@ export default function IndexPage() {
   }
 
   return (
-    <section className="flex flex-1 flex-col items-start justify-start overflow-y-auto px-5 pb-10 pt-8">
+    <section className="flex min-h-screen flex-col items-start justify-start overflow-y-auto px-5 pb-10 pt-8">
       <Text
         variant="heading"
         className="mb-11 select-none underline underline-offset-4"

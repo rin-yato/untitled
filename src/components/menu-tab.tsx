@@ -9,6 +9,7 @@ import Text from "@/components/ui/text"
 import { DynamicIcon } from "@/components/icons"
 
 import useOrder from "../hooks/use-order"
+import useSession from "@/hooks/use-session"
 
 type Props = {
   categories: Array<CategoriesResponse>
@@ -16,14 +17,14 @@ type Props = {
 
 export default function MenuTab({ categories }: Props) {
   const { createOrder } = useOrder()
-  const [selectedSession] = useAtom(selectedSessionAtom)
+  const { selectedSession } = useSession()
 
   const allOrderedItemIds = selectedSession?.orders.map(
     (order) => order.item.id
   )
 
   return (
-    <Tabs defaultValue={categories[0].id}>
+    <Tabs defaultValue={categories[0]?.id || ""}>
       <TabsList className="h-fit w-fit p-1.5 dark:bg-accent">
         {categories.map((category, index) => (
           <TabsTrigger
