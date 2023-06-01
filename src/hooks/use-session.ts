@@ -1,4 +1,4 @@
-import { use, useEffect, useMemo } from "react"
+import { useMemo } from "react"
 import { insertSessionSchema } from "@/drizzle/schema/sessions"
 import selectedSessionAtom from "@/jotai/selected-session-atom"
 import axios from "axios"
@@ -8,6 +8,7 @@ import useSwr from "swr"
 import { SessionsResponse } from "@/types/api/sessions"
 import { fetcher } from "@/lib/utils"
 import useAlert from "@/hooks/use-alert"
+import useTable from "@/hooks/use-table"
 
 export default function useSession() {
   const { createAlert } = useAlert()
@@ -16,10 +17,13 @@ export default function useSession() {
   const [selectedSessionReference, setSelectedSession] =
     useAtom(selectedSessionAtom)
 
+  const { tables } = useTable()
+
   // sessions containing orders and items
-  const { data, mutate, isValidating, isLoading } = useSwr<
-    Array<SessionsResponse>
-  >("/api/session", fetcher)
+  const { data, mutate } = useSwr<Array<SessionsResponse>>(
+    "/api/session",
+    fetcher
+  )
 
   // find the selected session from the data
   const selectedSession = useMemo(() => {
@@ -27,18 +31,45 @@ export default function useSession() {
     return data?.find((session) => session.id === selectedSessionReference.id)
   }, [selectedSessionReference, data])
 
-  const addSession = async (tableId: string) => {
+  const addSession = (tableId: string) => {
     const createSessionData = insertSessionSchema.parse({ tableId })
-    await axios.post("/api/session", createSessionData)
-    mutate()
+
+    const optimisticData = [
+      {
+        id: Math.random(),
+        tableId,
+        orders: [],
+        table: tables.find((table) => table.id === tableId),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      },
+      ...(data || []),
+    ] as Array<SessionsResponse>
+
+    axios.post("/api/session", createSessionData).then(() => mutate())
   }
 
-  const updateSession = async (id: number, tableId: number) => {
+  const updateSession = (tableId: string) => {
     const updateSessionData = insertSessionSchema.partial().parse({ tableId })
 
-    await axios.put(`/api/session/${id}`, updateSessionData)
+    if (!data || !selectedSession) return
 
-    mutate()
+    const optimisticData = data?.map((session) => {
+      if (session.id === selectedSession?.id) {
+        return {
+          ...session,
+          tableId,
+          table: tables.find((table) => table.id === tableId)!,
+        }
+      }
+      return session
+    })
+
+    mutate(optimisticData, false)
+
+    axios
+      .put(`/api/session/${selectedSession.id}`, updateSessionData)
+      .then(() => mutate())
   }
 
   const deleteSession = () => {
@@ -49,12 +80,20 @@ export default function useSession() {
       confirmText: "Delete",
       type: "destructive",
       onConfirm: () => {
-        axios.delete(`/api/session/${selectedSessionReference.id}`).then(() => {
-          mutate()
-          setSelectedSession(null)
-        })
+        const optimisticData = data?.filter(
+          (session) => session.id !== selectedSessionReference.id
+        )
+        mutate(optimisticData, false)
+        setSelectedSession(null)
+        axios
+          .delete(`/api/session/${selectedSessionReference.id}`)
+          .then(() => mutate())
       },
     })
+  }
+
+  const selectSession = (session: SessionsResponse) => {
+    setSelectedSession(session)
   }
 
   return {
@@ -64,5 +103,6 @@ export default function useSession() {
     updateSession,
     deleteSession,
     selectedSession,
+    selectSession,
   }
 }

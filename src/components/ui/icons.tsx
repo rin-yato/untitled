@@ -88,5 +88,6 @@ export type DynamicIconProps = {
 
 export const DynamicIcon = ({ name, ...props }: DynamicIconProps) => {
   const Icon = Icons[name]
+
   return <Icon {...props} />
 }

@@ -1,15 +1,15 @@
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/ui/icons"
 
 type SidebarConfigType = {
-  items: { label: string; icon: keyof typeof Icons }[]
+  items: { label: string; icon: keyof typeof Icons; href: string }[]
 }
 
 export const sidebarConfig: SidebarConfigType = {
   items: [
-    { label: "Table", icon: "armchair" },
-    { label: "Takeout", icon: "packageOpen" },
-    { label: "Menu", icon: "clipboardList" },
-    { label: "Transaction", icon: "dollarSign" },
-    { label: "Accounting", icon: "calculator" },
+    { label: "Table", icon: "armchair", href: "/table" },
+    { label: "Takeout", icon: "packageOpen", href: "/takeout" },
+    { label: "Menu", icon: "clipboardList", href: "/menu" },
+    { label: "Transaction", icon: "dollarSign", href: "/transaction" },
+    { label: "Accounting", icon: "calculator", href: "/accounting" },
   ],
 }

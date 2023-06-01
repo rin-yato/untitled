@@ -3,3 +3,6 @@ dist/*
 public
 node_modules  
 *.esm.js
+pnpm-lock.yaml
+.next
+

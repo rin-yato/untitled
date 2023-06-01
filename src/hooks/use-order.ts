@@ -3,6 +3,7 @@ import selectedSessionAtom from "@/jotai/selected-session-atom"
 import axios from "axios"
 import { useAtom } from "jotai"
 
+import useAlert from "@/hooks/use-alert"
 import useSession from "@/hooks/use-session"
 
 export default function useOrder() {
@@ -10,13 +11,10 @@ export default function useOrder() {
 
   const { mutate: mutateSession } = useSession()
 
+  const { createAlert } = useAlert()
+
   const calculateNewOrder = (orderId: string, quantity: number) => {
     if (!selectedSession) return
-
-    if (quantity === 0) {
-      deleteOrder(orderId)
-      return
-    }
 
     const newOrders = selectedSession.orders.map((order) => {
       if (order.id === orderId) {
@@ -54,6 +52,11 @@ export default function useOrder() {
       quantity,
     })
 
+    if (quantity === 0) {
+      deleteOrder(orderId)
+      return
+    }
+
     calculateNewOrder(orderId, quantity)
 
     await axios.put(`/api/order/${orderId}`, updateOrderData)
@@ -64,11 +67,14 @@ export default function useOrder() {
   const deleteOrder = async (orderId: string) => {
     if (!selectedSession) return
 
-    setSelectedSession(null)
-
-    await axios.delete(`/api/order/${orderId}`)
-
-    mutateSession()
+    createAlert({
+      title: "Are you sure you want to delete this order?",
+      description: "This action cannot be undone.",
+      type: "destructive",
+      onConfirm: () => {
+        axios.delete(`/api/order/${orderId}`).then(() => mutateSession())
+      },
+    })
   }
 
   return { createOrder, updateOrder, deleteOrder }

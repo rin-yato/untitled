@@ -8,7 +8,7 @@ export const items = pgTable("items", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
   price: real("price").notNull(),
-  cateoryId: uuid("category_id")
+  categoryId: uuid("category_id")
     .notNull()
     .references(() => categories.id),
   createAt: timestamp("created_at").defaultNow().notNull(),
@@ -19,7 +19,7 @@ export const insertItemSchema = createInsertSchema(items)
 
 export const itemsRelations = relations(items, ({ one, many }) => ({
   category: one(categories, {
-    fields: [items.cateoryId],
+    fields: [items.categoryId],
     references: [categories.id],
   }),
   orders: many(orders),

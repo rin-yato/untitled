@@ -1,6 +1,7 @@
 import React from "react"
 
 import useSession from "@/hooks/use-session"
+import useTable from "@/hooks/use-table"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -9,10 +10,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/ui/icons"
 
 export default function TableOrderMenu() {
-  const { deleteSession } = useSession()
+  const { deleteSession, sessions, updateSession } = useSession()
+  const { pickTable } = useTable()
+
+  const handleSelectTable = () => {
+    pickTable({
+      filter: sessions.map((session) => session.tableId),
+      onPick: (tableId) => {
+        updateSession(tableId)
+      },
+    })
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,7 +37,7 @@ export default function TableOrderMenu() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-5 w-40">
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleSelectTable}>
           <Icons.edit2 className="mr-2 h-5 w-5" />
           <span className="text-base">Edit Table</span>
         </DropdownMenuItem>

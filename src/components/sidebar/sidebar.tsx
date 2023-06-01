@@ -2,8 +2,8 @@
 
 import React from "react"
 
+import { Icons } from "@/components/ui/icons"
 import Text from "@/components/ui/text"
-import { Icons } from "@/components/icons"
 import SidebarList from "@/components/sidebar/sidebar-list"
 
 export default function Sidebar() {
