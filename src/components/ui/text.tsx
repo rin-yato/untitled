@@ -11,7 +11,7 @@ type TextVariant =
   | "body"
 
 type Props = {
-  variant: TextVariant
+  variant?: TextVariant
   children: React.ReactNode
 } & React.ComponentProps<"h1" | "h2" | "h3" | "p">
 
@@ -49,9 +49,10 @@ export default function Text({
   ...rest
 }: Props) {
   const DynamicText = CONFIG[variant].tag
+  const tw = CONFIG[variant].tw
 
   return (
-    <DynamicText {...rest} className={cn(CONFIG[variant].tw, className)}>
+    <DynamicText {...rest} className={cn(tw, className)}>
       {children}
     </DynamicText>
   )

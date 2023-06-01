@@ -14,6 +14,7 @@ export async function GET() {
         },
       },
     },
+    orderBy: (sessions, { desc }) => [desc(sessions.createdAt)],
   })
 
   return NextResponse.json(data)

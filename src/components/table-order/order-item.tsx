@@ -4,6 +4,7 @@ import React, { MouseEvent, useState } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 import { OrderWithItem } from "@/types/api/sessions"
+import useOrder from "@/hooks/use-order"
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
 import { OrderItemConfig } from "@/components/table-order"
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export default function OrderItem({ order }: Props) {
+  const { updateOrder } = useOrder()
   const [open, setOpen] = useState(false)
   const [autoAnimateParent] = useAutoAnimate({
     duration: 200,
@@ -23,8 +25,15 @@ export default function OrderItem({ order }: Props) {
     setOpen(!open)
   }
 
-  const handleAdd = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleUpdateOrder = (
+    event: MouseEvent<HTMLButtonElement>,
+    amount: number
+  ) => {
     event.stopPropagation()
+
+    const newQuantity = order.quantity + amount
+
+    updateOrder(order.id, newQuantity)
   }
 
   return (
@@ -43,28 +52,24 @@ export default function OrderItem({ order }: Props) {
           <Button
             variant="secondary"
             className="hover-ring"
-            onClick={handleAdd}
+            onClick={(e) => handleUpdateOrder(e, -1)}
           >
             -
           </Button>
-          <Button
-            variant="secondary"
-            className="text-emerald-500"
-            onClick={handleAdd}
-          >
+          <Button variant="secondary" className="text-emerald-500">
             {order.quantity}
           </Button>
           <Button
             variant="secondary"
             className="hover-ring"
-            onClick={handleAdd}
+            onClick={(e) => handleUpdateOrder(e, 1)}
           >
             +
           </Button>
         </div>
       </div>
 
-      {open && <OrderItemConfig key="open" />}
+      {open && <OrderItemConfig key="open" order={order} />}
     </li>
   )
 }

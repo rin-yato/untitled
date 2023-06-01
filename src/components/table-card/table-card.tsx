@@ -1,7 +1,7 @@
 import React from "react"
 
+import { DynamicIcon, Icon } from "@/components/ui/icons"
 import Text from "@/components/ui/text"
-import { DynamicIcon, Icon } from "@/components/icons"
 
 const foodIcons: Icon[] = ["beef", "beer", "soup"]
 
@@ -11,7 +11,7 @@ type Props = {
 
 export default function TableCard({ number }: Props) {
   return (
-    <div className="clickable cliche-card justify-between hover:ring-4">
+    <div className="clickable cliche-card justify-between hover:dark:ring-4">
       <div className="flex gap-3">
         {foodIcons.map((icon) => (
           <DynamicIcon name={icon} className="text-complementary-foreground" />

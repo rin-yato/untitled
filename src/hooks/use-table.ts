@@ -1,28 +1,37 @@
+import { Table } from "@/drizzle/schema/tables"
+import { atom, useAtom } from "jotai"
+import useSWR from "swr"
+import { z } from "zod"
 
+import { fetcher } from "@/lib/utils"
 
-import { useEffect } from "react"
-import tablesAtom from "@/jotai/tables-atom"
-import { useAtom } from "jotai"
+const pickTableSchema = z.object({
+  filter: z.array(z.string()).optional(),
+  onPick: z.function().args(z.string()).returns(z.void()),
+})
+
+export type PickTableAtom = z.infer<typeof pickTableSchema>
+
+const pickTableAtom = atom<PickTableAtom | null>(null)
 
 export default function useTable() {
-  const [tables, setTable] = useAtom(tablesAtom)
+  const { data: tables, mutate } = useSWR<Array<Table>>("/api/table", fetcher)
+  const [pickTableData, setPickTableData] = useAtom(pickTableAtom)
 
-  function fetchTables() {
-    fetch("/api/table").then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          setTable(data)
-        })
-      }
-    })
+  const pickTable = ({ onPick, filter }: PickTableAtom) => {
+    const pickTableCreateData = pickTableSchema.parse({ onPick, filter })
+    setPickTableData(pickTableCreateData)
   }
 
-  useEffect(() => {
-    fetchTables()
-  }, [])
+  const closePickTable = () => {
+    setPickTableData(null)
+  }
 
   return {
-    tables,
-    fetchTables,
+    tables: tables || [],
+    mutate,
+    pickTable,
+    closePickTable,
+    pickTableData,
   }
 }

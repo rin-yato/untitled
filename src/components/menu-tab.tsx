@@ -4,12 +4,12 @@ import { Close } from "@radix-ui/react-dialog"
 import { useAtom } from "jotai"
 
 import { CategoriesResponse } from "@/types/api/categories"
+import useSession from "@/hooks/use-session"
+import { DynamicIcon } from "@/components/ui/icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Text from "@/components/ui/text"
-import { DynamicIcon } from "@/components/icons"
 
 import useOrder from "../hooks/use-order"
-import useSession from "@/hooks/use-session"
 
 type Props = {
   categories: Array<CategoriesResponse>

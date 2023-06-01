@@ -1,25 +1,28 @@
 "use client"
 
-import selectedSessionAtom from "@/jotai/selected-session-atom"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
-import { useAtom } from "jotai"
 
-import { SessionsResponse } from "@/types/api/sessions"
 import useSession from "@/hooks/use-session"
+import useTable from "@/hooks/use-table"
+import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
-import { PickTableDialog } from "@/components/dialog"
 import { TableCard } from "@/components/table-card"
 
-export default function IndexPage() {
-  const { sessions, addSession } = useSession()
-  const [, selectedSession] = useAtom(selectedSessionAtom)
+export default function TablePage() {
+  const { sessions, addSession, selectSession } = useSession()
+  const { pickTable } = useTable()
   const [parent] = useAutoAnimate({
     duration: 250,
     easing: "ease",
   })
 
-  const handleSessionClick = (session: SessionsResponse) => {
-    selectedSession(session)
+  const handlePickTable = () => {
+    pickTable({
+      onPick: (tableId) => {
+        addSession(tableId)
+      },
+      filter: sessions.map((session) => session.table.id),
+    })
   }
 
   return (
@@ -33,14 +36,19 @@ export default function IndexPage() {
 
       <div ref={parent} className="grid w-full grid-cols-4 gap-5">
         {sessions.map((session) => (
-          <button key={session.id} onClick={() => handleSessionClick(session)}>
+          <button key={session.id} onClick={() => selectSession(session)}>
             <TableCard number={session.table.number} />
           </button>
         ))}
-        <PickTableDialog
-          filter={sessions.map((session) => session.table.id)}
-          onPickTable={addSession}
-        />
+
+        <Button
+          size="xl"
+          variant="accent"
+          className="aspect-square h-fit w-full ring-emerald-500 hover:ring-1 dark:ring-emerald-100"
+          onClick={handlePickTable}
+        >
+          Pick a Table
+        </Button>
       </div>
     </section>
   )

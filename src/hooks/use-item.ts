@@ -1,28 +1,33 @@
+import { Item } from "@/drizzle/schema/items"
+import axios from "axios"
+import useSwr from "swr"
+import { z } from "zod"
 
+import { fetcher } from "@/lib/utils"
+import useCategory from "@/hooks/use-category"
 
-import { useEffect } from "react"
-import { itemsAtom } from "@/jotai/items-atom"
-import { useAtom } from "jotai"
+const CreateItemSchema = z.object({
+  name: z.string(),
+  price: z.number(),
+  categoryId: z.string(),
+})
+
+type CreateItemData = z.infer<typeof CreateItemSchema>
 
 export default function useItem() {
-  const [items, setItems] = useAtom(itemsAtom)
+  const { data } = useSwr<Array<Item>>("/api/item", fetcher)
+  const { mutate } = useCategory()
 
-  function fetchItems() {
-    fetch("/api/item").then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          setItems(data)
-        })
-      }
-    })
+  const createItem = async (item: CreateItemData) => {
+    const validatedData = CreateItemSchema.parse(item)
+
+    await axios.post("/api/item", validatedData)
+
+    mutate()
   }
 
-  useEffect(() => {
-    fetchItems()
-  }, [])
-
   return {
-    items,
-    fetchItems,
+    items: data || [],
+    createItem,
   }
 }
