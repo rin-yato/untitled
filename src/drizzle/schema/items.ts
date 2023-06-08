@@ -1,18 +1,20 @@
-import { categories } from "@/drizzle/schema/categories"
-import { orders } from "@/drizzle/schema/orders"
-import { InferModel, relations } from "drizzle-orm"
-import { pgTable, real, text, timestamp, uuid } from "drizzle-orm/pg-core"
-import { createInsertSchema } from "drizzle-zod"
+import { categories } from "@/drizzle/schema/categories";
+import { orders } from "@/drizzle/schema/orders";
+import { InferModel, relations, sql } from "drizzle-orm";
+import { int, mysqlTable, real, serial, text, timestamp } from "drizzle-orm/mysql-core";
+import { createInsertSchema } from "drizzle-zod";
 
-export const items = pgTable("items", {
-  id: uuid("id").primaryKey().defaultRandom(),
+
+
+
+
+export const items = mysqlTable("items", {
+  id: serial("id").primaryKey(),
   name: text("name").notNull(),
   price: real("price").notNull(),
-  categoryId: uuid("category_id")
-    .notNull()
-    .references(() => categories.id),
-  createAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  categoryId: int("category_id").notNull(),
+  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).onUpdateNow().notNull(),
 })
 
 export const insertItemSchema = createInsertSchema(items)

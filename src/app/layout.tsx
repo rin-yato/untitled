@@ -4,12 +4,12 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { TailwindIndicator } from "@/components/ui/tailwind-indicator"
 import { Toaster } from "@/components/ui/toast/toaster"
 import { AlertDialog, PickTableDialog } from "@/components/dialog"
 import { Sidebar } from "@/components/sidebar"
-import { TableOrder } from "@/components/table-order"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme/theme-provider"
+import { TableOrder } from "@/app/service/order"
 
 export const metadata: Metadata = {
   title: {

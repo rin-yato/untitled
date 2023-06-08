@@ -16,7 +16,7 @@ export default function SidebarItem({ label, icon, href }: Props) {
   const pathname = usePathname()
   const Icon = Icons[icon]
 
-  const isActive = href.startsWith(pathname)
+  const isActive = href === pathname
 
   const activeTw = isActive && "bg-accent text-black dark:text-white"
 

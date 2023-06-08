@@ -1,17 +1,19 @@
-import { orders } from "@/drizzle/schema/orders"
-import { tables } from "@/drizzle/schema/tables"
-import { InferModel, relations } from "drizzle-orm"
-import { boolean, pgTable, timestamp, uuid } from "drizzle-orm/pg-core"
-import { createInsertSchema } from "drizzle-zod"
+import { orders } from "@/drizzle/schema/orders";
+import { tables } from "@/drizzle/schema/tables";
+import { InferModel, relations, sql } from "drizzle-orm";
+import { boolean, int, mysqlTable, serial, timestamp } from "drizzle-orm/mysql-core";
+import { createInsertSchema } from "drizzle-zod";
 
-export const sessions = pgTable("sessions", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  tableId: uuid("table_id")
-    .notNull()
-    .references(() => tables.id),
+
+
+
+
+export const sessions = mysqlTable("sessions", {
+  id: serial("id").primaryKey(),
+  tableId: int("table_id").notNull(),
   isActive: boolean("is_active").default(true).notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).onUpdateNow().notNull(),
 })
 
 export const sessionsRelations = relations(sessions, ({ one, many }) => ({

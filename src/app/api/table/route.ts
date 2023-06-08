@@ -11,10 +11,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const body = await request.json()
   const createTableData = insertTableSchema.parse(body)
-  const [createdTable] = await db
-    .insert(tables)
-    .values(createTableData)
-    .returning()
+  const createdTable = await db.insert(tables).values(createTableData)
 
   return NextResponse.json(createdTable)
 }

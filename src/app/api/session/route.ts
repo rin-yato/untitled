@@ -25,10 +25,7 @@ export async function POST(request: Request) {
 
   const createSessionData = insertSessionSchema.parse(body)
 
-  const [createdSession] = await db
-    .insert(sessions)
-    .values(createSessionData)
-    .returning()
+  const createdSession = await db.insert(sessions).values(createSessionData)
 
   return NextResponse.json(createdSession)
 }

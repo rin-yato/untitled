@@ -2,19 +2,6 @@ import React from "react"
 
 import { cn } from "@/lib/utils"
 
-type TextVariant =
-  | "heading"
-  | "subheading"
-  | "smallheading"
-  | "title"
-  | "caption"
-  | "body"
-
-type Props = {
-  variant?: TextVariant
-  children: React.ReactNode
-} & React.ComponentProps<"h1" | "h2" | "h3" | "p">
-
 const CONFIG = {
   heading: {
     tag: "h1",
@@ -41,6 +28,15 @@ const CONFIG = {
     tw: "leading-7 [&:not(:first-child)]:mt-6",
   },
 } as const
+
+type TextVariant = keyof typeof CONFIG
+
+type Tag = (typeof CONFIG)[TextVariant]["tag"]
+
+type Props = {
+  variant?: TextVariant
+  children: React.ReactNode
+} & React.ComponentProps<Tag>
 
 export default function Text({
   children,

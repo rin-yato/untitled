@@ -6,8 +6,8 @@ import { z } from "zod"
 import { fetcher } from "@/lib/utils"
 
 const pickTableSchema = z.object({
-  filter: z.array(z.string()).optional(),
-  onPick: z.function().args(z.string()).returns(z.void()),
+  filter: z.array(z.number()).optional(),
+  onPick: z.function().args(z.number()).returns(z.void()),
 })
 
 export type PickTableAtom = z.infer<typeof pickTableSchema>

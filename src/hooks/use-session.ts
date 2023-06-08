@@ -2,6 +2,7 @@ import { useMemo } from "react"
 import { insertSessionSchema } from "@/drizzle/schema/sessions"
 import selectedSessionAtom from "@/jotai/selected-session-atom"
 import axios from "axios"
+import { produce } from "immer"
 import { useAtom } from "jotai"
 import useSwr from "swr"
 
@@ -31,25 +32,29 @@ export default function useSession() {
     return data?.find((session) => session.id === selectedSessionReference.id)
   }, [selectedSessionReference, data])
 
-  const addSession = (tableId: string) => {
+  const addSession = (tableId: number) => {
     const createSessionData = insertSessionSchema.parse({ tableId })
 
-    const optimisticData = [
-      {
-        id: Math.random(),
-        tableId,
-        orders: [],
-        table: tables.find((table) => table.id === tableId),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-      ...(data || []),
-    ] as Array<SessionsResponse>
+    const newSessionMockData: SessionsResponse = {
+      ...createSessionData,
+      id: Math.floor(Math.random() * 100_000),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      table: tables.find((table) => table.id === tableId)!,
+      orders: [],
+      isActive: true,
+    }
+
+    const optimisticData = produce(data, (draft) => {
+      draft?.unshift(newSessionMockData)
+    })
+
+    mutate(optimisticData, false)
 
     axios.post("/api/session", createSessionData).then(() => mutate())
   }
 
-  const updateSession = (tableId: string) => {
+  const updateSession = (tableId: number) => {
     const updateSessionData = insertSessionSchema.partial().parse({ tableId })
 
     if (!data || !selectedSession) return

@@ -1,11 +1,12 @@
 import { env } from "@/env.mjs"
-import { drizzle } from "drizzle-orm/node-postgres"
-import { Pool } from "pg"
-import schema from './schema';
+import { connect } from "@planetscale/database"
+import { drizzle } from "drizzle-orm/planetscale-serverless"
 
-const pool = new Pool({
-  connectionString: env.DB_URL,
-  ssl: true,
+import schema from "./schema"
+
+// create database connection
+const connection = connect({
+  url: env.DB_URL,
 })
 
-export const db = drizzle(pool, { schema })
+export const db = drizzle(connection, { schema })

@@ -6,7 +6,7 @@ import useCategory from "@/hooks/use-category"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Icons } from "@/components/ui/icons"
-import MenuTab from "@/components/menu-tab"
+import MenuTab from "@/app/menu/menu-tab"
 
 export default function PickMenuDialog() {
   const { categories } = useCategory()

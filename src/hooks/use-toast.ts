@@ -5,12 +5,14 @@ import {
   ToastActionElement,
   type ToastProps,
 } from "@/components/ui/toast/toast"
+import { Icon } from "@/components/ui/icons"
 
 const TOAST_LIMIT = 6
-const TOAST_REMOVE_DELAY = 1000000
+const TOAST_REMOVE_DELAY = 10000
 
 type ToasterToast = ToastProps & {
   id: string
+  icon?: Icon
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement

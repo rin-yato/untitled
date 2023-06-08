@@ -8,20 +8,18 @@ import { ApiParams } from "@/types/utils"
 export async function PUT(request: Request, { params }: ApiParams<"id">) {
   const updateOrderData = await request.json()
 
-  const [updatedOrder] = await db
+  const updatedOrder = await db
     .update(orders)
     .set(updateOrderData)
-    .where(eq(orders.id, params.id))
-    .returning()
+    .where(eq(orders.id, Number(params.id)))
 
   return NextResponse.json(updatedOrder)
 }
 
 export async function DELETE(request: Request, { params }: ApiParams<"id">) {
-  const [deletedOrder] = await db
+  const deletedOrder = await db
     .delete(orders)
-    .where(eq(orders.id, params.id))
-    .returning()
+    .where(eq(orders.id, Number(params.id)))
 
   return NextResponse.json(deletedOrder)
 }

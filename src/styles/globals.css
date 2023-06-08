@@ -120,4 +120,8 @@
   .cliche-card {
     @apply flex aspect-square w-full select-none flex-col rounded-lg bg-complementary p-5 ring-complementary-foreground hover:ring-1 hover:dark:saturate-200;
   }
+
+  .layout-padding {
+    @apply px-5 pb-10 pt-8;
+  }
 }
