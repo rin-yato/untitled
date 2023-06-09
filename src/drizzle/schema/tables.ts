@@ -1,13 +1,24 @@
 import { sessions } from "@/drizzle/schema/sessions"
-import { InferModel, relations } from "drizzle-orm"
-import { integer, pgTable, timestamp, uuid } from "drizzle-orm/pg-core"
+import { InferModel, relations, sql } from "drizzle-orm"
+import {
+  int,
+  mysqlTable,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/mysql-core"
 import { createInsertSchema } from "drizzle-zod"
 
-export const tables = pgTable("tables", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  number: integer("number").notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+export const tables = mysqlTable("tables", {
+  id: serial("id").primaryKey(),
+  number: int("number").notNull(),
+  createdAt: timestamp("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .onUpdateNow()
+    .notNull(),
 })
 
 export const tablesRelations = relations(tables, ({ many }) => ({

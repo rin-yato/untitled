@@ -13,7 +13,7 @@ export default function useOrder() {
 
   const { createAlert } = useAlert()
 
-  const calculateNewOrder = (orderId: string, quantity: number) => {
+  const calculateNewOrder = (orderId: number, quantity: number) => {
     if (!selectedSession) return
 
     const newOrders = selectedSession.orders.map((order) => {
@@ -29,7 +29,7 @@ export default function useOrder() {
     })
   }
 
-  const createOrder = async (itemId: string) => {
+  const createOrder = async (itemId: number) => {
     if (!selectedSession) return
 
     // Parse data to match schema
@@ -45,7 +45,7 @@ export default function useOrder() {
     mutateSession()
   }
 
-  const updateOrder = async (orderId: string, quantity: number) => {
+  const updateOrder = async (orderId: number, quantity: number) => {
     if (!selectedSession) return
 
     const updateOrderData = insertOrderSchema.partial().parse({
@@ -64,7 +64,7 @@ export default function useOrder() {
     mutateSession()
   }
 
-  const deleteOrder = async (orderId: string) => {
+  const deleteOrder = async (orderId: number) => {
     if (!selectedSession) return
 
     createAlert({

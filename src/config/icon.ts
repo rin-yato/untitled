@@ -7,6 +7,7 @@ const IconConfig: Array<{ label: string; icon: Icon }> = [
   { label: "Water", icon: "glassWater" },
   { label: "Soup", icon: "soup" },
   { label: "Sides", icon: "pizza" },
+  { label: "Alcohol", icon: "beer" },
 ]
 
 export default IconConfig

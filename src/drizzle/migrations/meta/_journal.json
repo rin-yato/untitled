@@ -1,34 +1,27 @@
 {
   "version": "5",
-  "dialect": "pg",
+  "dialect": "mysql",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1685173029608,
-      "tag": "0000_tiresome_shadow_king",
-      "breakpoints": false
+      "when": 1686042780837,
+      "tag": "0000_confused_layla_miller",
+      "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1685178454960,
-      "tag": "0001_light_wendell_rand",
-      "breakpoints": false
+      "when": 1686042796976,
+      "tag": "0001_next_marvel_boy",
+      "breakpoints": true
     },
     {
       "idx": 2,
       "version": "5",
-      "when": 1685338955083,
-      "tag": "0002_tidy_chamber",
-      "breakpoints": false
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1685341802331,
-      "tag": "0003_calm_mattie_franklin",
-      "breakpoints": false
+      "when": 1686042824241,
+      "tag": "0002_dark_firestar",
+      "breakpoints": true
     }
   ]
 }

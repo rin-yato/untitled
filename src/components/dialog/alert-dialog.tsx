@@ -17,7 +17,13 @@ import { buttonVariants } from "@/components/ui/button"
 
 export default function AlertDialog() {
   const { alert, hideAlert } = useAlert()
+
   if (!alert) return null
+
+  const handleConfirm = async () => {
+    await alert.onConfirm?.()
+    alert.resolve?.()
+  }
 
   return (
     <AlertDialogBase open={alert.open} onOpenChange={hideAlert}>
@@ -31,7 +37,7 @@ export default function AlertDialog() {
             {alert.cancelText || "Cancel"}
           </AlertDialogCancel>
           <AlertDialogAction
-            onClick={alert.onConfirm}
+            onClick={handleConfirm}
             className={buttonVariants({
               variant: alert.type,
             })}

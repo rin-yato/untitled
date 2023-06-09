@@ -13,10 +13,7 @@ export async function POST(request: Request) {
 
   const createOrderData = insertOrderSchema.parse(body)
 
-  const [createdOrder] = await db
-    .insert(orders)
-    .values(createOrderData)
-    .returning()
+  const createdOrder = await db.insert(orders).values(createOrderData)
 
   return NextResponse.json(createdOrder)
 }

@@ -13,10 +13,7 @@ export async function POST(request: Request) {
 
   const createItemData = insertItemSchema.parse(body)
 
-  const [createdItem] = await db
-    .insert(items)
-    .values(createItemData)
-    .returning()
+  const createdItem = await db.insert(items).values(createItemData)
 
   return NextResponse.json(createdItem)
 }

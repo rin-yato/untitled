@@ -19,10 +19,7 @@ export async function POST(request: Request) {
 
   const createCategoryData = insertCategorySchema.parse(body)
 
-  const [createdCategory] = await db
-    .insert(categories)
-    .values(createCategoryData)
-    .returning()
+  await db.insert(categories).values(createCategoryData)
 
-  return NextResponse.json(createdCategory)
+  return NextResponse.json({ message: "Category created" })
 }
