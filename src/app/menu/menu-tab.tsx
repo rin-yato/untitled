@@ -21,12 +21,12 @@ export default function MenuTab({ categories }: Props) {
   )
 
   return (
-    <Tabs defaultValue={categories[0]?.id || ""}>
+    <Tabs defaultValue={categories[0]?.id?.toString()}>
       <TabsList className="h-fit w-fit p-1.5 dark:bg-accent">
         {categories.map((category, index) => (
           <TabsTrigger
             key={category.id}
-            value={category.id}
+            value={category.id?.toString()}
             className="dark:data-[state='active']:bg-complementary dark:data-[state='active']:text-primary"
           >
             <div className="flex items-center justify-center gap-2 px-2 py-1">
@@ -39,7 +39,7 @@ export default function MenuTab({ categories }: Props) {
       {categories.map((category) => (
         <TabsContent
           key={category.id + "tab-content"}
-          value={category.id}
+          value={category.id?.toString()}
           className="mt-6 h-fit w-full"
         >
           <div className=" grid h-full w-full grid-cols-6 gap-5">

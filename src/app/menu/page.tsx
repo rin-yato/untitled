@@ -16,23 +16,14 @@ export default function MenuPage() {
   const [defaultCategory, setDefaultCategory] = useState<number>()
 
   useEffect(() => {
-    if (!defaultCategory) {
-      const currentDefaultCategory = categories[0]?.id
-      setDefaultCategory(currentDefaultCategory)
-    }
-
-    const defaultCategoryExists = categories.find(
-      (category) => category.id === defaultCategory
-    )
-
-    if (!defaultCategoryExists) {
-      const currentDefaultCategory = categories[0]?.id
-      setDefaultCategory(currentDefaultCategory)
-    }
-  }, [categories, setDefaultCategory])
+    const currentDefaultCategory = categories[0]?.id
+    setDefaultCategory((prev) => prev || currentDefaultCategory)
+  }, [categories])
 
   if (isLoading) return <Text variant="subheading">Loading</Text>
 
+  // If there are no categories,
+  // show a message to create a category
   if (categories.length === 0) {
     return (
       <div className="flex h-screen w-full flex-col items-center justify-center gap-y-5">

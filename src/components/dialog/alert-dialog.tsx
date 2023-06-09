@@ -21,7 +21,7 @@ export default function AlertDialog() {
   if (!alert) return null
 
   const handleConfirm = async () => {
-    await alert.onConfirm()
+    await alert.onConfirm?.()
     alert.resolve?.()
   }
 

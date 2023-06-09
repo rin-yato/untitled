@@ -55,7 +55,7 @@ export function TransactionDataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4 gap-x-5">
+      <div className="flex items-center gap-x-5 py-4">
         {table.getColumn("createdAt") && (
           <DatePickerWithRange
             onRangeChange={(date) => {

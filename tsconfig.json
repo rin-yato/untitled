@@ -24,12 +24,6 @@
     ],
     "strictNullChecks": true
   },
-  "include": [
-    "src",
-    "next-env.d.ts",
-    "src/env.mjs",
-    ".next/types/**/*.ts",
-    "next.config.mjs"
-  ],
+  "include": ["src", "next-env.d.ts", ".next/types/**/*.ts", "next.config.mjs"],
   "exclude": ["node_modules", "examples"]
 }

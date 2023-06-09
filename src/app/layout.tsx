@@ -9,7 +9,6 @@ import { Toaster } from "@/components/ui/toast/toaster"
 import { AlertDialog, PickTableDialog } from "@/components/dialog"
 import { Sidebar } from "@/components/sidebar"
 import { ThemeProvider } from "@/components/theme/theme-provider"
-import { TableOrder } from "@/app/service/order"
 
 export const metadata: Metadata = {
   title: {

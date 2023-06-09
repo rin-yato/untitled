@@ -11,7 +11,7 @@ const createAlertSchema = z.object({
     .default("default"),
   cancelText: z.string().default("Cancel"),
   confirmText: z.string().default("Confirm"),
-  onConfirm: z.function().returns(z.promise(z.void()).or(z.void())),
+  onConfirm: z.function().returns(z.promise(z.void()).or(z.void())).optional(),
   onCancel: z
     .function()
     .returns(z.void())

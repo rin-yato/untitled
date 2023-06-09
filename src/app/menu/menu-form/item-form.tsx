@@ -36,9 +36,12 @@ const ItemFormSchema = z.object({
   price: z.string({
     required_error: "Please enter a price for your item",
   }),
-  categoryId: z.number({
-    required_error: "Please select a category for your item",
-  }),
+  categoryId: z.preprocess(
+    (val) => (val ? Number(val) : undefined),
+    z.number({
+      required_error: "Please select a category for your item",
+    })
+  ),
 })
 
 type ItemForm = z.infer<typeof ItemFormSchema>

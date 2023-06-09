@@ -149,7 +149,6 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
     header: "Actions",
     cell: ({ row }) => {
       const payment = row.original
-      const { toast } = useToast()
 
       return (
         <DropdownMenu>
@@ -163,13 +162,9 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
             <DropdownMenuItem
               onClick={() => {
                 navigator.clipboard.writeText(payment.amountKhr.toString())
-                toast({
-                  icon: "copy",
-                  title: "Copied KHR amount to clipboard.",
-                })
               }}
             >
-              Copy amount in KHR
+              <CopyButton />
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem isDestructive>
@@ -182,3 +177,20 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
     },
   },
 ]
+
+function CopyButton() {
+  const { toast } = useToast()
+
+  return (
+    <div
+      onClick={() =>
+        toast({
+          icon: "copy",
+          title: "Copied KHR amount to clipboard.",
+        })
+      }
+    >
+      Copy amount in KHR
+    </div>
+  )
+}

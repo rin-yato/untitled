@@ -16,8 +16,10 @@ export async function PUT(request: Request, { params }: ApiParams<"id">) {
   return NextResponse.json(updatedTable)
 }
 
-export async function DELETE({ params }: ApiParams<"id">) {
-  const deletedTable = await db.delete(tables).where(eq(tables.id, Number(params.id)))
+export async function DELETE(request: Request, { params }: ApiParams<"id">) {
+  const deletedTable = await db
+    .delete(tables)
+    .where(eq(tables.id, Number(params.id)))
 
   return NextResponse.json(deletedTable)
 }

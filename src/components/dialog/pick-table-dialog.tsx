@@ -38,7 +38,7 @@ const TableGrid = ({
   onPickTable,
 }: {
   filteredTable: Array<Table>
-  onPickTable: (tableId: string) => void
+  onPickTable: (tableId: number) => void
 }) => {
   return (
     <div className="grid grid-cols-4 gap-5">

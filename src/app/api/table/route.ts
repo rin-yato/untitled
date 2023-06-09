@@ -3,7 +3,7 @@ import { db } from "@/drizzle/db"
 import { insertTableSchema, tables } from "@/drizzle/schema/tables"
 
 export async function GET() {
-  const data = await db.select().from(tables)
+  const data = await db.select().from(tables).orderBy(tables.number)
 
   return NextResponse.json(data)
 }
