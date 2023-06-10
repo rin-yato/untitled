@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/ui/icons"
 
-export default function OrderMenu() {
+export function OrderDropdownMenu() {
   const { deleteSession, sessions, updateSession } = useSession()
   const { pickTable } = useTable()
 

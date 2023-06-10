@@ -5,10 +5,11 @@ import React from "react"
 import useSession from "@/hooks/use-session"
 import { Icons } from "@/components/ui/icons"
 import Text from "@/components/ui/text"
-import { OrderList } from "@/app/service/order"
-import TableOrderMenu from "@/app/service/order/dropdown-menu"
 
-export default function Orders() {
+import { OrderDropdownMenu } from "./dropdown-menu"
+import { OrderList } from "./order-list"
+
+export function Orders() {
   const { selectedSession: session } = useSession()
 
   if (!session)
@@ -32,10 +33,10 @@ export default function Orders() {
             started 7m ago
           </Text>
         </span>
-        <TableOrderMenu />
+        <OrderDropdownMenu />
       </span>
       <section className="h-full">
-        <OrderList orders={session.orders || []} />
+        <OrderList orders={session.orders} />
       </section>
     </div>
   )

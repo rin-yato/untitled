@@ -7,16 +7,24 @@ import { Button } from "@/components/ui/button"
 import { DynamicIcon, Icons } from "@/components/ui/icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Text from "@/components/ui/text"
-import { EditItemDialog, MenuForm } from "@/app/menu/menu-form"
-import EditCategoryDialog from "@/app/menu/menu-form/edit-category-dialog"
+
+import { MenuForm } from "./menu-form"
+import { EditCategoryDialog } from "./menu-form/edit-category-dialog"
+import EditItemDialog from "./menu-form/edit-item-dialog"
 
 export default function MenuPage() {
   const { categories, isLoading } = useCategory()
 
+  // this control the current category tab
   const [defaultCategory, setDefaultCategory] = useState<number>()
 
   useEffect(() => {
+    // On first render, set the default category
+    // to the first category in the list
     const currentDefaultCategory = categories[0]?.id
+
+    // If there is already a default category,
+    // don't change it
     setDefaultCategory((prev) => prev || currentDefaultCategory)
   }, [categories])
 

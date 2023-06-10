@@ -52,11 +52,7 @@ type Props = {
   defaultItem?: Item
 }
 
-export default function ItemForm({
-  setOpen,
-  setDefaultCategory,
-  defaultItem,
-}: Props) {
+export function ItemForm({ setOpen, setDefaultCategory, defaultItem }: Props) {
   const { createItem, updateItem, deleteItem } = useItem()
   const { categories } = useCategory()
   const [loading, setLoading] = React.useState(false)

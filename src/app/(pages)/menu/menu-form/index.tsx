@@ -10,13 +10,15 @@ import {
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Icons } from "@/components/ui/icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CategoryForm, ItemForm } from "@/app/menu/menu-form"
+
+import { CategoryForm } from "./category-form"
+import { ItemForm } from "./item-form"
 
 type Props = {
   setDefaultCateogry: React.Dispatch<React.SetStateAction<number | undefined>>
 }
 
-export default function MenuForm({ setDefaultCateogry }: Props) {
+export function MenuForm({ setDefaultCateogry }: Props) {
   const [open, setOpen] = React.useState(false)
   return (
     <Dialog open={open} onOpenChange={setOpen}>
