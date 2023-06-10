@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { ItemForm } from "@/app/menu/menu-form"
+import { ItemForm } from "./item-form"
 
 type Props = {
   setDefaultCateogry: React.Dispatch<React.SetStateAction<number | undefined>>

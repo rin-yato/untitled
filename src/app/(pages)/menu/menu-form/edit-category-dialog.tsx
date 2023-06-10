@@ -9,14 +9,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import CategoryForm from "./category-form"
+import { CategoryForm } from "./category-form"
 
 type Props = {
   category?: number
   children?: React.ReactNode
 }
 
-export default function EditCategoryDialog({ category, children }: Props) {
+export function EditCategoryDialog({ category, children }: Props) {
   const [open, setOpen] = React.useState(false)
   return (
     <Dialog open={open} onOpenChange={setOpen}>

@@ -11,7 +11,7 @@ type Props = {
   order: OrderWithItem
 }
 
-export default function OrderItemConfig({ order }: Props) {
+export function OrderItemConfig({ order }: Props) {
   const { updateOrder, deleteOrder } = useOrder()
 
   const handleUpdateOrder = (amount: number) => {

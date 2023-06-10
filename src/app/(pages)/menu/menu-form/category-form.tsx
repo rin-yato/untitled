@@ -42,7 +42,7 @@ type Props = {
   defaultCategory?: number
 }
 
-export default function CategoryForm({ setOpen, defaultCategory }: Props) {
+export function CategoryForm({ setOpen, defaultCategory }: Props) {
   const { createCategory, updateCategory, deleteCategory, categories } =
     useCategory()
   const [loading, setLoading] = React.useState(false)

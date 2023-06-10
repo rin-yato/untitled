@@ -52,7 +52,7 @@ type Props = {
   defaultItem?: Item
 }
 
-export default function ItemForm({
+export function ItemForm({
   setOpen,
   setDefaultCategory,
   defaultItem,

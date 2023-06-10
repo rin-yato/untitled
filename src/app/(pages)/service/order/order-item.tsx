@@ -7,13 +7,14 @@ import { OrderWithItem } from "@/types/api/sessions"
 import useOrder from "@/hooks/use-order"
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text"
-import { OrderItemConfig } from "@/app/service/order"
+
+import { OrderItemConfig } from "./order-item-config"
 
 type Props = {
   order: OrderWithItem
 }
 
-export default function OrderItem({ order }: Props) {
+export function OrderItem({ order }: Props) {
   const { updateOrder } = useOrder()
   const [open, setOpen] = useState(false)
   const [autoAnimateParent] = useAutoAnimate({
@@ -35,6 +36,9 @@ export default function OrderItem({ order }: Props) {
 
     updateOrder(order.id, newQuantity)
   }
+
+  // If there isnt an item, dont render the order item
+  if (!order.item) return null
 
   return (
     <li
