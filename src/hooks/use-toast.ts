@@ -1,11 +1,11 @@
 // Inspired by react-hot-toast library
 import * as React from "react"
 
+import { Icon } from "@/components/ui/icons"
 import {
   ToastActionElement,
   type ToastProps,
 } from "@/components/ui/toast/toast"
-import { Icon } from "@/components/ui/icons"
 
 const TOAST_LIMIT = 6
 const TOAST_REMOVE_DELAY = 10000

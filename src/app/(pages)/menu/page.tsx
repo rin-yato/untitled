@@ -8,9 +8,9 @@ import { DynamicIcon, Icons } from "@/components/ui/icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Text from "@/components/ui/text"
 
+import { MenuForm } from "./menu-form"
 import { EditCategoryDialog } from "./menu-form/edit-category-dialog"
 import EditItemDialog from "./menu-form/edit-item-dialog"
-import { MenuForm } from "./menu-form"
 
 export default function MenuPage() {
   const { categories, isLoading } = useCategory()
