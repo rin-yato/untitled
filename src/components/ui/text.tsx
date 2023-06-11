@@ -21,9 +21,13 @@ const CONFIG = {
   },
   caption: {
     tag: "h4",
-    tw: "scroll-m-20 text-lg tracking-tight",
+    tw: "scroll-m-20 text-lg font-medium tracking-tight",
   },
   body: {
+    tag: "p",
+    tw: "leading-7",
+  },
+  paragraph: {
     tag: "p",
     tw: "leading-7 [&:not(:first-child)]:mt-6",
   },

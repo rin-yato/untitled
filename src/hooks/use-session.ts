@@ -32,7 +32,7 @@ export default function useSession() {
     return data?.find((session) => session.id === selectedSessionReference.id)
   }, [selectedSessionReference, data])
 
-  const addSession = (tableId: number) => {
+  function addSession(tableId: number) {
     const createSessionData = insertSessionSchema.parse({ tableId })
 
     const newSessionMockData: SessionsResponse = {
@@ -42,7 +42,7 @@ export default function useSession() {
       updatedAt: new Date(),
       table: tables.find((table) => table.id === tableId)!,
       orders: [],
-      isActive: true,
+      status: "open",
     }
 
     const optimisticData = produce(data, (draft) => {
@@ -54,7 +54,7 @@ export default function useSession() {
     axios.post("/api/session", createSessionData).then(() => mutate())
   }
 
-  const updateSession = (tableId: number) => {
+  function updateSession(tableId: number) {
     const updateSessionData = insertSessionSchema.partial().parse({ tableId })
 
     if (!data || !selectedSession) return
@@ -77,7 +77,7 @@ export default function useSession() {
       .then(() => mutate())
   }
 
-  const deleteSession = () => {
+  function deleteSession() {
     if (!selectedSessionReference) return
     createAlert({
       title: "Delete Table",
@@ -97,6 +97,38 @@ export default function useSession() {
     })
   }
 
+  async function checkout() {
+    if (!selectedSessionReference) return
+
+    await axios.put(`/api/session/${selectedSession?.id}`, {
+      status: "pending",
+    })
+
+    mutate()
+  }
+
+  async function confirmPayment(sessionId: number) {
+    const session = data?.find((session) => session.id === sessionId)
+    if (!session) return
+
+    const total = session.orders.reduce(
+      (acc, order) => (acc += order.item.price * order.quantity),
+      0
+    )
+
+    createAlert({
+      title: `Confirm Payment ~ $${total}`,
+      description: "Make sure you have received the payment before confirming",
+      onConfirm: () => {
+        axios
+          .put(`/api/session/${sessionId}`, {
+            status: "closed",
+          })
+          .then(() => mutate())
+      },
+    })
+  }
+
   const selectSession = (session: SessionsResponse) => {
     setSelectedSession(session)
   }
@@ -104,9 +136,11 @@ export default function useSession() {
   return {
     sessions: data || [],
     mutate,
+    checkout,
     addSession,
     updateSession,
     deleteSession,
+    confirmPayment,
     selectedSession,
     selectSession,
   }

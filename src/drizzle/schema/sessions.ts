@@ -2,8 +2,8 @@ import { orders } from "@/drizzle/schema/orders"
 import { tables } from "@/drizzle/schema/tables"
 import { InferModel, relations, sql } from "drizzle-orm"
 import {
-  boolean,
   int,
+  mysqlEnum,
   mysqlTable,
   serial,
   timestamp,
@@ -13,7 +13,9 @@ import { createInsertSchema } from "drizzle-zod"
 export const sessions = mysqlTable("sessions", {
   id: serial("id").primaryKey(),
   tableId: int("table_id").notNull(),
-  isActive: boolean("is_active").default(true).notNull(),
+  status: mysqlEnum("status", ["open", "pending", "closed"])
+    .default("open")
+    .notNull(),
   createdAt: timestamp("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
