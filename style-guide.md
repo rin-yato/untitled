@@ -20,7 +20,7 @@ ex: `myVariable`, `myFunction`
 
 ex: `MY_CONSTANT`, `MY_FUNCTION`
 
-### functions and components must use function syntax
+#### functions and components must use function syntax
 
 ex: `function myFunction() {}` or `function MyComponent() {}`
 
