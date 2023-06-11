@@ -1,16 +1,22 @@
 import { NextResponse } from "next/server"
 import { db } from "@/drizzle/db"
 import { insertSessionSchema, sessions } from "@/drizzle/schema/sessions"
+import { eq, or } from "drizzle-orm"
 
 import { SessionsResponse } from "@/types/api/sessions"
 
 export async function GET() {
   const data: Array<SessionsResponse> = await db.query.sessions.findMany({
+    where: or(eq(sessions.status, "open"), eq(sessions.status, "pending")),
     with: {
       table: true,
       orders: {
         with: {
-          item: true,
+          item: {
+            with: {
+              category: true,
+            }
+          },
         },
       },
     },

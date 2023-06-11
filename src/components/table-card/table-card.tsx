@@ -1,19 +1,27 @@
 import React from "react"
 
+import { cn } from "@/lib/utils"
 import { DynamicIcon, Icon } from "@/components/ui/icons"
 import Text from "@/components/ui/text"
 
-const foodIcons: Icon[] = ["beef", "beer", "soup"]
-
 type Props = {
   number: number
+  isPending?: boolean
+  icons?: Array<Icon>
 }
 
-export default function TableCard({ number }: Props) {
+export default function TableCard({ number, isPending, icons }: Props) {
+  const isPendingClass = isPending && "bg-amber-200"
+
   return (
-    <div className="clickable cliche-card justify-between hover:dark:ring-4">
+    <div
+      className={cn(
+        "clickable cliche-card justify-between hover:dark:ring-4",
+        isPendingClass
+      )}
+    >
       <div className="flex gap-3">
-        {foodIcons.map((icon) => (
+        {icons?.map((icon) => (
           <DynamicIcon name={icon} className="text-complementary-foreground" />
         ))}
       </div>

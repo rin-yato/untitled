@@ -4,6 +4,7 @@ import { OrderWithItem } from "@/types/api/sessions"
 import { Button } from "@/components/ui/button"
 import { PickMenuDialog } from "@/components/dialog"
 
+import { CheckoutDialog } from "../checkout"
 import { OrderItem } from "./order-item"
 
 type Props = {
@@ -20,11 +21,11 @@ export function OrderList({ orders }: Props) {
         <PickMenuDialog />
       </ul>
 
-      {/* <div className="flex flex-col rounded-xl bg-accent p-3"> */}
-      <Button size="xl" className="rounded-full">
-        Check Out
-      </Button>
-      {/* </div> */}
+      <CheckoutDialog>
+        <Button size="xl" className="rounded-full">
+          Check Out
+        </Button>
+      </CheckoutDialog>
     </div>
   )
 }

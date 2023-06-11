@@ -5,11 +5,12 @@ import { useAutoAnimate } from "@formkit/auto-animate/react"
 import useSession from "@/hooks/use-session"
 import useTable from "@/hooks/use-table"
 import { Button } from "@/components/ui/button"
+import { Icon } from "@/components/ui/icons"
 import Text from "@/components/ui/text"
 import { TableCard } from "@/components/table-card"
 
 export default function TablePage() {
-  const { sessions, addSession, selectSession } = useSession()
+  const { sessions, addSession, selectSession, confirmPayment } = useSession()
   const { pickTable } = useTable()
   const [parent] = useAutoAnimate({
     duration: 250,
@@ -37,11 +38,33 @@ export default function TablePage() {
       </Text>
 
       <div ref={parent} className="grid w-full grid-cols-4 gap-5">
-        {sessions.map((session) => (
-          <button key={session.tableId} onClick={() => selectSession(session)}>
-            <TableCard number={session.table.number} />
-          </button>
-        ))}
+        {sessions.map((session) => {
+          // Generate a list of icons for the table card
+          const icons = session.orders.reduce((acc, order) => {
+            const icon = order.item.category.icon || ""
+            if (!acc.includes(icon)) {
+              acc.push(icon)
+            }
+            return acc
+          }, [] as string[])
+
+          const isPending = session.status === "pending"
+
+          return (
+            <button
+              key={session.tableId}
+              onClick={() =>
+                isPending ? confirmPayment(session.id) : selectSession(session)
+              }
+            >
+              <TableCard
+                number={session.table.number}
+                icons={icons as Array<Icon>}
+                isPending={isPending}
+              />
+            </button>
+          )
+        })}
 
         <Button
           size="xl"
