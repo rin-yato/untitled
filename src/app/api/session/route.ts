@@ -15,7 +15,7 @@ export async function GET() {
           item: {
             with: {
               category: true,
-            }
+            },
           },
         },
       },

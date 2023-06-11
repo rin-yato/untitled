@@ -1,10 +1,12 @@
-import { Card, CardContent } from "@/components/ui/card"
-import useSession from "@/hooks/use-session"
-import { cn } from "@/lib/utils"
 import React from "react"
-import { ItemTable } from "./item-table"
 import { Close } from "@radix-ui/react-dialog"
+
+import { cn } from "@/lib/utils"
+import useSession from "@/hooks/use-session"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+
+import { ItemTable } from "./item-table"
 
 export function SummaryCard() {
   const { checkout } = useSession()
