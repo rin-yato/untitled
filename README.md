@@ -1,5 +1,9 @@
 # Untitled
 
+!!!Note
+PlanetScale took down my free DB, you probably will get some error. If you access the website that i hosted, sorryy haha.
+!!!
+
 ## Hi there!
 
 This is my first open source project, I'm hoping to be able
